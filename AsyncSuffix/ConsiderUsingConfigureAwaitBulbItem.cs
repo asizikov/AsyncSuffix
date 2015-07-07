@@ -54,20 +54,10 @@ namespace AsyncSuffix
             
 
 
-            IExpression newExpression = null;
             _literalExpression.GetPsiServices().Transactions.Execute(GetType().Name, () =>
             {
 //                using (solution.GetComponent<IShellLocks>().UsingWriteLock())
-//                    newExpression = ModificationUtil.ReplaceChild(
-//                      _literalExpression.Task, elementFactory.CreateExpression("$0.ConfigureAwait($1)", _literalExpression.Task,
-//                        elementFactory.CreateExpressionByConstantValue(CSharpConstantValueFactory.CreateBoolValue(_value, psiModule, null))));
             });
-
-            if (newExpression != null)
-            {
-                IRangeMarker marker = newExpression.GetDocumentRange().CreateRangeMarker(solution.GetComponent<DocumentManager>());
-                containingFile.OptimizeImportsAndRefs(marker, false, true, NullProgressIndicator.Instance);
-            }
         }
     }
 }
