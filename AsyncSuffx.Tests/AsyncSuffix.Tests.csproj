@@ -1,21 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\JetBrains.ReSharper.SDK.Tests.9.1.20150522.81235\build\JetBrains.ReSharper.SDK.Tests.props" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.Tests.9.1.20150522.81235\build\JetBrains.ReSharper.SDK.Tests.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{752FF9EC-357F-4272-92AD-E4DAB15312C1}</ProjectGuid>
+    <ProjectGuid>{3F41529C-551C-476B-9EF4-2335C3D0E30A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sizikov.AsyncSuffix</RootNamespace>
-    <AssemblyName>Sizikov.AsyncSuffix</AssemblyName>
+    <RootNamespace>AsyncSuffx.Tests</RootNamespace>
+    <AssemblyName>AsyncSuffx.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>f26e534d</NuGetPackageImportStamp>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>494f8656</NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup>
-    <HostFullIdentifier>ReSharperPlatformVs12Plugins</HostFullIdentifier>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -156,13 +154,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsiderUsingAsyncSuffixBulbItem.cs" />
-    <Compile Include="ConsiderUsingAsyncSuffixQuickFix.cs" />
-    <Compile Include="Analyzer\ConsiderUsingAsyncSuffixAnalyzer.cs" />
-    <Compile Include="Analyzer\ConsiderUsingAsyncSuffixHighlighting.cs" />
-    <Compile Include="Analyzer\TaskExtensions.cs" />
-    <Compile Include="ZoneMarker.cs" />
+    <Compile Include="Analyzer\ConsiderUsingAsyncSuffixHighlightingTest.cs" />
+    <Compile Include="TestEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AsyncSuffix\AsyncSuffix.csproj">
+      <Project>{752ff9ec-357f-4272-92ad-e4dab15312c1}</Project>
+      <Name>AsyncSuffix</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -189,6 +189,7 @@
     <Error Condition="!Exists('..\packages\JetBrains.Psi.Features.test.Framework.102.0.20150522.71619\build\JetBrains.Psi.Features.test.Framework.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.Psi.Features.test.Framework.102.0.20150522.71619\build\JetBrains.Psi.Features.test.Framework.Targets'))" />
     <Error Condition="!Exists('..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20141124.0\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20141124.0\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets'))" />
     <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.9.1.20150522.81235\build\JetBrains.ReSharper.SDK.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.9.1.20150522.81235\build\JetBrains.ReSharper.SDK.Targets'))" />
+    <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.Tests.9.1.20150522.81235\build\JetBrains.ReSharper.SDK.Tests.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.Tests.9.1.20150522.81235\build\JetBrains.ReSharper.SDK.Tests.props'))" />
   </Target>
   <Import Project="..\packages\JetBrains.Platform.Core.Text.102.0.20150522.70700\build\JetBrains.Platform.Core.Text.Targets" Condition="Exists('..\packages\JetBrains.Platform.Core.Text.102.0.20150522.70700\build\JetBrains.Platform.Core.Text.Targets')" />
   <Import Project="..\packages\JetBrains.Platform.Core.Ide.102.0.20150522.70700\build\JetBrains.Platform.Core.Ide.Targets" Condition="Exists('..\packages\JetBrains.Platform.Core.Ide.102.0.20150522.70700\build\JetBrains.Platform.Core.Ide.Targets')" />
