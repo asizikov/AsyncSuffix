@@ -1,0 +1,11 @@
+using System.Threading.Tasks;
+
+class C
+{
+  |public async Task Foo()|(0)
+  {
+      return null;
+  }
+}
+---------------------------------------------------------
+(0): ReSharper Suggestion: Async method name does not have 'Async' suffix

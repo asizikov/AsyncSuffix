@@ -17,7 +17,7 @@ namespace AsyncSuffx.Tests.Analyzer
 
         protected override string RelativeTestDataPath
         {
-            get { return @"Daemon\ConsiderUsingConfigureAwait"; }
+            get { return @"\Analyzer\ConsiderUsingAwaitSuffix"; }
         }
 
         [Test]

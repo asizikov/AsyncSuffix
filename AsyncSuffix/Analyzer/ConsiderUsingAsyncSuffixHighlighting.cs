@@ -10,7 +10,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
     public sealed class ConsiderUsingAsyncSuffixHighlighting : IHighlighting
     {
         public IMethodDeclaration MethodDeclaration { get; set; }
-        public const string SeverityId = "ConsiderUsingAssyncSuffix";
+        public const string SeverityId = "ConsiderUsingAsyncSuffix";
 
         public ConsiderUsingAsyncSuffixHighlighting(IMethodDeclaration methodDeclaration)
         {
@@ -39,8 +39,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
 
         public bool IsValid()
         {
-            return true;
-            //            return MethodDeclaration == null || MethodDeclaration.IsValid();
+            return MethodDeclaration == null || MethodDeclaration.IsValid();
         }
     }
 }

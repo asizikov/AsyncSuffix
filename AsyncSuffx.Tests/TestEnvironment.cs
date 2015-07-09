@@ -12,7 +12,7 @@ using Sizikov.AsyncSuffix.Analyzer;
 
 [ZoneDefinition]
 // ReSharper disable CheckNamespace
-public interface IAsyncSuffxPluginTestZone : ITestsZone, IRequire<PsiFeatureTestZone>
+public class TestEnvironmentZone : ITestsZone, IRequire<PsiFeatureTestZone>
 // ReSharper restore CheckNamespace
 {
 }
@@ -22,7 +22,7 @@ public interface IAsyncSuffxPluginTestZone : ITestsZone, IRequire<PsiFeatureTest
 /// </summary>
 [SetUpFixture]
 // ReSharper disable CheckNamespace
-public class ConfigureAwaitPluginTestEnvironmentAssembly : TestEnvironmentAssembly<IAsyncSuffxPluginTestZone>
+public class ConfigureAwaitPluginTestEnvironmentAssembly : TestEnvironmentAssembly<TestEnvironmentZone>
 // ReSharper restore CheckNamespace
 {
     /// <summary>
