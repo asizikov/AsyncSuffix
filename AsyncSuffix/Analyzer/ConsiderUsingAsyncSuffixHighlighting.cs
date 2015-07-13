@@ -3,7 +3,16 @@ using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using Sizikov.AsyncSuffix.Analyzer;
 
+
+[assembly: RegisterConfigurableSeverity(ConsiderUsingAsyncSuffixHighlighting.SeverityId,
+  null,
+  HighlightingGroupIds.BestPractice,
+  "Consider adding Async suffix",
+  "Library code should use ConfigureAwait with every await. Always specifying ConfigureAwait makes it clearer how the continuation is invoked and avoids synchonization bugs.",
+  Severity.SUGGESTION,
+  false)]
 namespace Sizikov.AsyncSuffix.Analyzer
 {
     [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name, OverlapResolve = OverlapResolveKind.WARNING)]

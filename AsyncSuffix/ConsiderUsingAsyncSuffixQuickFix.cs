@@ -11,21 +11,21 @@ namespace Sizikov.AsyncSuffix
     [QuickFix]
     public sealed class ConsiderUsingAsyncSuffixQuickFix : IQuickFix
     {
-        private readonly ConsiderUsingAsyncSuffixHighlighting highlighting;
+        private ConsiderUsingAsyncSuffixHighlighting Highlighting { get; set; }
 
         public ConsiderUsingAsyncSuffixQuickFix([NotNull] ConsiderUsingAsyncSuffixHighlighting highlighting)
         {
-            this.highlighting = highlighting;
+            Highlighting = highlighting;
         }
 
         public IEnumerable<IntentionAction> CreateBulbItems()
         {
-            return new[] { new ConsiderUsingAsyncSuffixBulbItem(highlighting.MethodDeclaration) }.ToQuickFixAction();
+            return new[] { new ConsiderUsingAsyncSuffixBulbItem(Highlighting.MethodDeclaration) }.ToQuickFixAction();
         }
 
         public bool IsAvailable(IUserDataHolder cache)
         {
-            return highlighting.IsValid();
+            return Highlighting.IsValid();
         }
     }
 }

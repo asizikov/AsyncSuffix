@@ -12,11 +12,11 @@ namespace Sizikov.AsyncSuffix
 {
     public sealed class ConsiderUsingAsyncSuffixBulbItem : IBulbAction
     {
-        private readonly IMethodDeclaration literalExpression;
+        private IMethodDeclaration MethodDeclaration { get; set; }
 
-        public ConsiderUsingAsyncSuffixBulbItem(IMethodDeclaration literalExpression)
+        public ConsiderUsingAsyncSuffixBulbItem(IMethodDeclaration methodDeclaration)
         {
-            this.literalExpression = literalExpression;
+            MethodDeclaration = methodDeclaration;
         }
 
         public string Text
@@ -26,15 +26,15 @@ namespace Sizikov.AsyncSuffix
 
         public void Execute(ISolution solution, ITextControl textControl)
         {
-            if (!literalExpression.IsValid())
+            if (!MethodDeclaration.IsValid())
             {
                 return;
             }
 
-            var containingFile = literalExpression.GetContainingFile();
-            var psiModule = literalExpression.GetPsiModule();
+            var containingFile = MethodDeclaration.GetContainingFile();
+            var psiModule = MethodDeclaration.GetPsiModule();
             var elementFactory = CSharpElementFactory.GetInstance(psiModule);
-            var declared = literalExpression.DeclaredElement;
+            var declared = MethodDeclaration.DeclaredElement;
             if (declared != null)
             {
                 var newName = declared.ShortName + "Async";
@@ -43,7 +43,7 @@ namespace Sizikov.AsyncSuffix
                 //                workflow.CreateRefactoring();
             }
 
-            literalExpression.GetPsiServices().Transactions.Execute(GetType().Name,
+            MethodDeclaration.GetPsiServices().Transactions.Execute(GetType().Name,
                 () =>
                 {
                     //                using (solution.GetComponent<IShellLocks>().UsingWriteLock())

@@ -37,11 +37,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
 
         private bool IsInterestring(IMethodDeclaration methodDeclaration)
         {
-            if (!methodDeclaration.IsAsync || !methodDeclaration.IsOverride)
-            {
-                return false;
-            }
-            return true;
+            return !methodDeclaration.IsOverride;
         }
     }
 }
