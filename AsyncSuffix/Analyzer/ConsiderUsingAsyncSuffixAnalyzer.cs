@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon.CSharp.Stages;
+﻿using System;
+using JetBrains.ReSharper.Daemon.CSharp.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
@@ -16,7 +17,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 var declaredElement = methodDeclaration.DeclaredElement;
                 if (declaredElement != null)
                 {
-                    if (declaredElement.ShortName.EndsWith("Async"))
+                    if (declaredElement.ShortName.EndsWith("Async", StringComparison.Ordinal))
                     {
                         return;
                     }
