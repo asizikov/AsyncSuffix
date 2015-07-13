@@ -14,6 +14,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
         {
             if (IsInterestring(methodDeclaration))
             {
+                var nameIdentifier= methodDeclaration.NameIdentifier;
                 var declaredElement = methodDeclaration.DeclaredElement;
                 if (declaredElement != null)
                 {
