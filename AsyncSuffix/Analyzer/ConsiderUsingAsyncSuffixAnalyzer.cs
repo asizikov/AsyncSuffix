@@ -7,37 +7,41 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace Sizikov.AsyncSuffix.Analyzer
 {
-    [ElementProblemAnalyzer(typeof (IMethodDeclaration), HighlightingTypes = new[] { typeof (ConsiderUsingAsyncSuffixHighlighting) })]
+    [ElementProblemAnalyzer(typeof (IMethodDeclaration),
+        HighlightingTypes = new[] {typeof (ConsiderUsingAsyncSuffixHighlighting)})]
     public sealed class ConsiderUsingAsyncSuffixAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>
     {
-        protected override void Run(IMethodDeclaration methodDeclaration, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
+        protected override void Run(IMethodDeclaration methodDeclaration, ElementProblemAnalyzerData data,
+                                    IHighlightingConsumer consumer)
         {
             if (IsInterestring(methodDeclaration))
             {
-                var nameIdentifier= methodDeclaration.NameIdentifier;
-                var declaredElement = methodDeclaration.DeclaredElement;
-                if (declaredElement != null)
-                {
-                    if (declaredElement.ShortName.EndsWith("Async", StringComparison.Ordinal))
-                    {
-                        return;
-                    }
-
-                    var returnType = declaredElement.ReturnType as IDeclaredType;
-                    if (returnType != null)
-                    {
-                        if (returnType.IsTaskType())
-                        {
-                            consumer.AddHighlighting(new ConsiderUsingAsyncSuffixHighlighting(methodDeclaration));
-                        }
-                    }
-                }
+                consumer.AddHighlighting(new ConsiderUsingAsyncSuffixHighlighting(methodDeclaration));
             }
         }
 
         private bool IsInterestring(IMethodDeclaration methodDeclaration)
         {
-            return !methodDeclaration.IsOverride;
+            if (methodDeclaration.IsOverride) return false;
+
+            var declaredElement = methodDeclaration.DeclaredElement;
+            if (declaredElement != null)
+            {
+                if (declaredElement.ShortName.EndsWith("Async", StringComparison.Ordinal))
+                {
+                    return false;
+                }
+
+                var returnType = declaredElement.ReturnType as IDeclaredType;
+                if (returnType != null)
+                {
+                    if (returnType.IsTaskType())
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
