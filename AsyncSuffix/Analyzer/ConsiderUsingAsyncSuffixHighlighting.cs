@@ -3,6 +3,7 @@ using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 using Sizikov.AsyncSuffix.Analyzer;
 
 
@@ -28,7 +29,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
 
         public DocumentRange CalculateRange()
         {
-            return MethodDeclaration.GetHighlightingRange();
+            return MethodDeclaration.NameIdentifier.GetDocumentRange();
         }
 
         public string ToolTip
