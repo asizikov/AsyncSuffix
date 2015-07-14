@@ -163,7 +163,7 @@
     <Compile Include="Analyzer\ConsiderUsingAsyncSuffixAnalyzer.cs" />
     <Compile Include="Analyzer\ConsiderUsingAsyncSuffixHighlighting.cs" />
     <Compile Include="Analyzer\TaskExtensions.cs" />
-    <Compile Include="TypoRenameWorkflow.cs" />
+    <Compile Include="MethodRenameWorkflow.cs" />
     <Compile Include="ZoneMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
