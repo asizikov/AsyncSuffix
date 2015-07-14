@@ -178,6 +178,6 @@ UpgradeLog*.htm
 *.rdl.data
 *.bim.layout
 *.bim_*.settings
-
 # Microsoft Fakes
 FakesAssemblies/
+*.exe
