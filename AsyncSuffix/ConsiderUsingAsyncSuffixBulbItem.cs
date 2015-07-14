@@ -1,12 +1,19 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using JetBrains.ActionManagement;
+using JetBrains.Application;
+using JetBrains.Application.DataContext;
+using JetBrains.DataFlow;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Bulbs;
+using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Tree;
-using JetBrains.ReSharper.Refactorings.Rename;
 using JetBrains.TextControl;
+using DataConstants = JetBrains.ProjectModel.DataContext.DataConstants;
 
 namespace Sizikov.AsyncSuffix
 {
@@ -38,16 +45,18 @@ namespace Sizikov.AsyncSuffix
             if (declared != null)
             {
                 var newName = declared.ShortName + "Async";
-                var renames = RenameRefactoringService.Instance.CreateAtomicRenames(declared, newName, true).ToList();
-                var workflow = RenameFromContexts.InitFromNameChanges(solution, renames);
-                //                workflow.CreateRefactoring();
-            }
 
-            MethodDeclaration.GetPsiServices().Transactions.Execute(GetType().Name,
-                () =>
-                {
-                    //                using (solution.GetComponent<IShellLocks>().UsingWriteLock())
-                });
+
+                var refactoringService = solution.GetComponent<RenameRefactoringService>();
+                var suggests = new List<string> {newName};
+                SearchDomainFactory searchDomainFactory = solution.GetComponent<SearchDomainFactory>();
+                var workflow = (IRefactoringWorkflow)new TypoRenameWorkflow(suggests, solution.GetComponent<IShellLocks>(), searchDomainFactory, refactoringService, solution, "TypoRename");
+
+                var renames = RenameRefactoringService.Instance.CreateAtomicRenames(declared, newName, true).ToList();
+               // var workflow = RenameFromContexts.InitFromNameChanges(solution, renames);
+                //                workflow.CreateRefactoring();
+                Lifetimes.Using(lifetime => RefactoringActionUtil.ExecuteRefactoring(solution.GetComponent<IActionManager>().DataContexts.CreateOnSelection(lifetime, DataRules.AddRule("DoTypoRenameWorkflow", DataConstants.SOLUTION, solution)), workflow));
+            }
         }
     }
 }

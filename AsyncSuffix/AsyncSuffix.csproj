@@ -137,6 +137,7 @@
       <HintPath>..\packages\TaskParallelLibrary.1.0.2856.0\lib\Net35\System.Threading.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Platform.Lib.System.Windows.Interactivity.2.0.20140318.0\lib\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -156,11 +157,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RenameOverloadsPageDecorator.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixBulbItem.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixQuickFix.cs" />
     <Compile Include="Analyzer\ConsiderUsingAsyncSuffixAnalyzer.cs" />
     <Compile Include="Analyzer\ConsiderUsingAsyncSuffixHighlighting.cs" />
     <Compile Include="Analyzer\TaskExtensions.cs" />
+    <Compile Include="TypoRenameWorkflow.cs" />
     <Compile Include="ZoneMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
