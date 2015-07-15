@@ -13,7 +13,7 @@ namespace Sizikov.AsyncSuffix
 {
   internal class MethodRenameWorkflow : RenameWorkflow
   {
-    private readonly List<string> Suggestions;
+    private List<string> Suggestions { get; set; }
 
     public override IRefactoringPage FirstPendingRefactoringPage
     {
@@ -43,7 +43,7 @@ namespace Sizikov.AsyncSuffix
         {
           var list2 = list1;
             var list3 = new List<NameInnerElement> {new NameWord(str, str)};
-            var nameRoot = new NameRoot(list3, (PluralityKinds) 1, true);
+            var nameRoot = new NameRoot(list3, PluralityKinds.Single, true);
           list2.Add(nameRoot);
         }
       }

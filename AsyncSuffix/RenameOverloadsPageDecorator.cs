@@ -10,14 +10,14 @@ namespace Sizikov.AsyncSuffix
 {
   internal class RenameOverloadsPageDecorator : IRefactoringPage
   {
-    private readonly RenameOverloadsPage myOverloadsPage;
-    private NameCompletionEdit EditBox;
+    private RenameOverloadsPage OverloadsPage { get; set; }
+    private NameCompletionEdit EditBox { get; set; }
 
     public IProperty<bool> ContinueEnabled
     {
       get
       {
-        return myOverloadsPage.ContinueEnabled;
+        return OverloadsPage.ContinueEnabled;
       }
     }
 
@@ -25,7 +25,7 @@ namespace Sizikov.AsyncSuffix
     {
       get
       {
-        return myOverloadsPage.Description;
+        return OverloadsPage.Description;
       }
     }
 
@@ -33,7 +33,7 @@ namespace Sizikov.AsyncSuffix
     {
       get
       {
-        return myOverloadsPage.Title;
+        return OverloadsPage.Title;
       }
     }
 
@@ -42,7 +42,7 @@ namespace Sizikov.AsyncSuffix
       get
       {
         ShowSuggests();
-        return myOverloadsPage.View;
+        return OverloadsPage.View;
       }
     }
 
@@ -50,36 +50,36 @@ namespace Sizikov.AsyncSuffix
     {
       get
       {
-        return myOverloadsPage.DoNotShow;
+        return OverloadsPage.DoNotShow;
       }
     }
 
     public RenameOverloadsPageDecorator(RenameOverloadsPage overloadsPage)
     {
-      myOverloadsPage = overloadsPage;
+      OverloadsPage = overloadsPage;
     }
 
     public IRefactoringPage Commit(IProgressIndicator pi)
     {
-      IRefactoringPage irefactoringPage = myOverloadsPage.Commit(pi);
+      var irefactoringPage = OverloadsPage.Commit(pi);
       if (irefactoringPage is RenameInitialControl)
       {
         var renameInitialControl = irefactoringPage as RenameInitialControl;
         var field = typeof (RenameInitialControl).GetField("myEditboxName", BindingFlags.Instance | BindingFlags.NonPublic);
         if (field != null)
-          this.EditBox = field.GetValue(renameInitialControl) as NameCompletionEdit;
+          EditBox = field.GetValue(renameInitialControl) as NameCompletionEdit;
       }
       return irefactoringPage;
     }
 
     public bool Initialize(IProgressIndicator pi)
     {
-      return myOverloadsPage.Initialize(pi);
+      return OverloadsPage.Initialize(pi);
     }
 
     public bool RefreshContents(IProgressIndicator pi)
     {
-      return myOverloadsPage.RefreshContents(pi);
+      return OverloadsPage.RefreshContents(pi);
     }
 
     private void ShowSuggests()
@@ -88,10 +88,6 @@ namespace Sizikov.AsyncSuffix
         return;
       var method = typeof (CompletionPickerEdit).GetMethod("CompletionListShow", BindingFlags.Instance | BindingFlags.NonPublic);
       var nameCompletionEdit = EditBox;
-      var parameters = new object[1];
-      int index = 0;
-      var showModeTransition = CompletionPickerEdit.CompletionListShowModeTransition.Soft;
-      parameters[index] = showModeTransition;
-      method.Invoke(nameCompletionEdit, parameters);
+      method.Invoke(nameCompletionEdit,new[]{ (object)CompletionPickerEdit.CompletionListShowModeTransition.Soft});
     }
   }}
