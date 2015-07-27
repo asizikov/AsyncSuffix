@@ -1,5 +1,5 @@
 # AsyncSuffix
 
-ReSharper pluin.
+ReSharper plugin.
 
-Appends 'Async' suffix to Task returning method.
+Appends 'Async' suffix to Task returning method name.
