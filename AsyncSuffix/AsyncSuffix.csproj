@@ -157,10 +157,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analyzer\AsyncMethodNameUtil.cs" />
     <Compile Include="RenameOverloadsPageDecorator.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixBulbItem.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixQuickFix.cs" />
-    <Compile Include="Analyzer\ConsiderUsingAsyncSuffixAnalyzer.cs" />
+    <Compile Include="Analyzer\AsyncMethodNameProblemAnalyzer.cs" />
     <Compile Include="Analyzer\ConsiderUsingAsyncSuffixHighlighting.cs" />
     <Compile Include="Analyzer\TaskExtensions.cs" />
     <Compile Include="MethodRenameWorkflow.cs" />
