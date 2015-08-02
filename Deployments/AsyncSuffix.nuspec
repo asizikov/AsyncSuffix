@@ -2,21 +2,21 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Sizikov.AsyncSuffix</id>
-        <version>0.0.3</version>
+        <version>1.0.0</version>
         <title>AsyncSuffix</title>
         <authors>Anton Sizikov</authors>
         <owners>AntonSizikov</owners>
         <projectUrl>https://github.com/asizikov/AsyncSuffix</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>.</description>
+        <description>Task returning method's naming analizer</description>
         <releaseNotes></releaseNotes>
         <language>en-US</language>
-        <tags></tags>
+        <tags>async method, namming, task</tags>
         <dependencies>
             <dependency id="Wave" version="[2.0]" />
         </dependencies>
     </metadata>
     <files>
-        <file src="..\AsyncSuffix\bin\Debug\Sizikov.AsyncSuffix.dll" target="dotFiles" />
+        <file src="..\AsyncSuffix\bin\Release\Sizikov.AsyncSuffix.dll" target="dotFiles" />
     </files>
 </package>

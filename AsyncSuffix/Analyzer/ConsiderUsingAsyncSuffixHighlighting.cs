@@ -10,7 +10,7 @@ using Sizikov.AsyncSuffix.Analyzer;
   null,
   HighlightingGroupIds.BestPractice,
   "Consider adding Async suffix",
-  "According do Microsoft gudlines a method which is Task-returning and is asynchronous in nature should have an 'Async' suffix. ",
+  "According to Microsoft gudlines a method which is Task-returning and is asynchronous in nature should have an 'Async' suffix. ",
   Severity.SUGGESTION,
   false)]
 namespace Sizikov.AsyncSuffix.Analyzer
