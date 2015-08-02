@@ -39,7 +39,7 @@
                  FontWeight="SemiBold" Margin="2,4" />
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <CheckBox IsChecked="{Binding ExcludeTestMethodsFromAnalysis.Value, Mode=TwoWay}"
-                  Content="Exclude test methods from analisis" />
+                  Content="Exclude test methods from analysis" />
             </StackPanel>
         </Grid>
     </Grid>

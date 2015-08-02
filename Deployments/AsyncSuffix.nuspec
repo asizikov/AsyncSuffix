@@ -8,7 +8,7 @@
         <owners>AntonSizikov</owners>
         <projectUrl>https://github.com/asizikov/AsyncSuffix</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Task returning method's naming analizer</description>
+        <description>Task returning method's naming analyzer</description>
         <releaseNotes></releaseNotes>
         <language>en-US</language>
         <tags>async method, namming, task</tags>
