@@ -2,18 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Sizikov.AsyncSuffix</id>
-        <version>1.0.1</version>
+        <version>1.0.2-RC3</version>
         <title>AsyncSuffix</title>
         <authors>Anton Sizikov</authors>
         <owners>AntonSizikov</owners>
         <projectUrl>https://github.com/asizikov/AsyncSuffix</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Task returning method's naming analyzer. Async methods should have 'Async' suffix.</description>
-        <releaseNotes>minor fixes</releaseNotes>
+        <releaseNotes>ReSharper 9.2 RC3 support</releaseNotes>
         <language>en-US</language>
         <tags>async method, namming, task</tags>
         <dependencies>
-            <dependency id="Wave" version="[2.0]" />
+            <dependency id="Wave" version="[3.0]" />
         </dependencies>
     </metadata>
     <files>
