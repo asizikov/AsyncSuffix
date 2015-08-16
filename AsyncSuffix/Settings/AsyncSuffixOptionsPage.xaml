@@ -35,7 +35,7 @@
                 </Style>
             </Grid.Resources>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Analisis:"
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Analysis:"
                  FontWeight="SemiBold" Margin="2,4" />
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <CheckBox IsChecked="{Binding ExcludeTestMethodsFromAnalysis.Value, Mode=TwoWay}"
