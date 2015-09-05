@@ -14,7 +14,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>a7600310</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>891525c2</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -147,7 +147,6 @@
     <Error Condition="!Exists('..\packages\JetBrains.Platform.Tests.Framework.103.0.20150814.142020-RC3\build\JetBrains.Platform.Tests.Framework.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.Platform.Tests.Framework.103.0.20150814.142020-RC3\build\JetBrains.Platform.Tests.Framework.Targets'))" />
     <Error Condition="!Exists('..\packages\JetBrains.Psi.Features.test.Framework.103.0.20150814.143119-RC3\build\JetBrains.Psi.Features.test.Framework.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.Psi.Features.test.Framework.103.0.20150814.143119-RC3\build\JetBrains.Psi.Features.test.Framework.Targets'))" />
     <Error Condition="!Exists('..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20150812.0\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20150812.0\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets'))" />
-    <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.9.2.20150814.153322-RC3\build\JetBrains.ReSharper.SDK.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.9.2.20150814.153322-RC3\build\JetBrains.ReSharper.SDK.Targets'))" />
   </Target>
   <Import Project="..\packages\JetBrains.Platform.Core.Text.103.0.20150814.142020-RC3\build\JetBrains.Platform.Core.Text.Targets" Condition="Exists('..\packages\JetBrains.Platform.Core.Text.103.0.20150814.142020-RC3\build\JetBrains.Platform.Core.Text.Targets')" />
   <Import Project="..\packages\JetBrains.Platform.Core.Ide.103.0.20150814.142020-RC3\build\JetBrains.Platform.Core.Ide.Targets" Condition="Exists('..\packages\JetBrains.Platform.Core.Ide.103.0.20150814.142020-RC3\build\JetBrains.Platform.Core.Ide.Targets')" />
@@ -166,7 +165,6 @@
   <Import Project="..\packages\JetBrains.Platform.Tests.Framework.103.0.20150814.142020-RC3\build\JetBrains.Platform.Tests.Framework.Targets" Condition="Exists('..\packages\JetBrains.Platform.Tests.Framework.103.0.20150814.142020-RC3\build\JetBrains.Platform.Tests.Framework.Targets')" />
   <Import Project="..\packages\JetBrains.Psi.Features.test.Framework.103.0.20150814.143119-RC3\build\JetBrains.Psi.Features.test.Framework.Targets" Condition="Exists('..\packages\JetBrains.Psi.Features.test.Framework.103.0.20150814.143119-RC3\build\JetBrains.Psi.Features.test.Framework.Targets')" />
   <Import Project="..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20150812.0\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets" Condition="Exists('..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20150812.0\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets')" />
-  <Import Project="..\packages\JetBrains.ReSharper.SDK.9.2.20150814.153322-RC3\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.9.2.20150814.153322-RC3\build\JetBrains.ReSharper.SDK.Targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
