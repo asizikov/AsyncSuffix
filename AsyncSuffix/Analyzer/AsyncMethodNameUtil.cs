@@ -56,7 +56,15 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 var returnType = declaredElement.ReturnType as IDeclaredType;
                 if (returnType != null)
                 {
-                    if (returnType.IsTaskType())
+                    var isCustomAsyncType = false;
+                    if (settings.GetValue(AsyncSuffixSettingsAccessor.CustomAsyncTypesEnabled))
+                    {
+                        var customTypes = settings.GetValue(AsyncSuffixSettingsAccessor.CustomAsyncTypes);
+                        var clrTypeName = returnType.GetClrName();
+
+                        customTypes.TryGet(clrTypeName, out isCustomAsyncType);
+                    }
+                    if (returnType.IsTaskType() || isCustomAsyncType)
                     {
                         return true;
                     }
