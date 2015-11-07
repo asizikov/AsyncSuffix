@@ -1,3 +1,4 @@
+configuration: Release
 cache:
   - packages -> **\packages.config
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
