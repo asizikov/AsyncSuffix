@@ -20,6 +20,9 @@ test: off
 nuget:
   disable_publish_on_pr: true
 
+after_build: 
+  - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec
+
 artifacts:
   - path: sources/**/bin/*.nupkg
 
