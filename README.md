@@ -1,6 +1,9 @@
 # AsyncSuffix plugin for [ReSharper](https://www.jetbrains.com/resharper/) 9.1
 
+[![Build status](https://ci.appveyor.com/api/projects/status/jo72bgcj0twlskbt?svg=true)](https://ci.appveyor.com/project/asizikov/asyncsuffix)
+
 ReSharper plugin.
+
 
 Appends 'Async' suffix to Task returning method name.
 
