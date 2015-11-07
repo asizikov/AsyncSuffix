@@ -31,3 +31,4 @@ deploy:
     branch:
       - master
       - develop
+      - feature/sdk-10
