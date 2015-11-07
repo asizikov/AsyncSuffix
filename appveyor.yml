@@ -9,10 +9,10 @@ install:
 
 before_build:
  - ps: nuget restore
- - ps: gitversion /l console /output buildserver /updateassemblyinfo AsyncSuffix/Properties/AssemblyInfo.cs /b (get-item env:APPVEYOR_REPO_BRANCH).Value
+ - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
 
 build:
-  project: AsyncSuffix/AsyncSuffix.csproj
+  project: AsyncSuffix/AsyncSuffix.sln
   verbosity: minimal
   publish_nuget: true
 test: off
