@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using JetBrains.Application;
 using JetBrains.Application.DataContext;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
 using JetBrains.ReSharper.Psi.Naming.Impl;
-using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Refactorings.Rename;
 
 namespace Sizikov.AsyncSuffix
@@ -26,8 +24,8 @@ namespace Sizikov.AsyncSuffix
       }
     }
 
-    public MethodRenameWorkflow(List<string> suggestions, IShellLocks locks, SearchDomainFactory searchDomainFactory, RenameRefactoringService renameRefactoringService, ISolution solution, string actionId)
-            :base(locks, searchDomainFactory, renameRefactoringService, solution, actionId)
+    public MethodRenameWorkflow(List<string> suggestions, RenameRefactoringService renameRefactoringService, ISolution solution, string actionId)
+            :base(renameRefactoringService, solution, actionId)
     {
       Suggestions = suggestions;
     }

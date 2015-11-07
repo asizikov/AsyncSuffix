@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.ActionManagement;
-using JetBrains.Application;
 using JetBrains.Application.DataContext;
 using JetBrains.DataFlow;
 using JetBrains.ProjectModel;
@@ -50,7 +49,7 @@ namespace Sizikov.AsyncSuffix
                 var refactoringService = solution.GetComponent<RenameRefactoringService>();
                 var suggests = new List<string> {newName};
                 SearchDomainFactory searchDomainFactory = solution.GetComponent<SearchDomainFactory>();
-                var workflow = (IRefactoringWorkflow)new MethodRenameWorkflow(suggests, solution.GetComponent<IShellLocks>(), searchDomainFactory, refactoringService, solution, "TypoRename");
+                var workflow = (IRefactoringWorkflow)new MethodRenameWorkflow(suggests, refactoringService, solution, "TypoRename");
 
                 var renames = RenameRefactoringService.Instance.CreateAtomicRenames(declared, newName, true).ToList();
                // var workflow = RenameFromContexts.InitFromNameChanges(solution, renames);
