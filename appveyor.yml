@@ -12,7 +12,7 @@ before_build:
  - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
 
 build:
-  project: AsyncSuffix/AsyncSuffix.sln
+  project: AsyncSuffix.sln
   verbosity: minimal
   publish_nuget: true
 test: off
