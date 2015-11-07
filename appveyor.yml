@@ -15,7 +15,7 @@ before_build:
 build:
   project: AsyncSuffix.sln
   verbosity: minimal
-  #publish_nuget: true
+  publish_nuget: true
 test: off
 nuget:
   disable_publish_on_pr: true
