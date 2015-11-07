@@ -1,4 +1,5 @@
 configuration: Release
+platform: Any CPU
 cache:
   - packages -> **\packages.config
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
