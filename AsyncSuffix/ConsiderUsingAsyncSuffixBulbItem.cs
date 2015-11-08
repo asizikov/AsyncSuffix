@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.ActionManagement;
-using JetBrains.Application;
 using JetBrains.Application.DataContext;
 using JetBrains.DataFlow;
 using JetBrains.ProjectModel;
+using JetBrains.ProjectModel.DataContext;
 using JetBrains.ReSharper.Feature.Services.Bulbs;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
@@ -37,25 +37,18 @@ namespace Sizikov.AsyncSuffix
             {
                 return;
             }
-
-            var containingFile = MethodDeclaration.GetContainingFile();
-            var psiModule = MethodDeclaration.GetPsiModule();
-            var elementFactory = CSharpElementFactory.GetInstance(psiModule);
             var declared = MethodDeclaration.DeclaredElement;
             if (declared != null)
             {
                 var newName = declared.ShortName + "Async";
-
-
-                var refactoringService = solution.GetComponent<RenameRefactoringService>();
                 var suggests = new List<string> {newName};
-                SearchDomainFactory searchDomainFactory = solution.GetComponent<SearchDomainFactory>();
-                var workflow = (IRefactoringWorkflow)new MethodRenameWorkflow(suggests, solution.GetComponent<IShellLocks>(), searchDomainFactory, refactoringService, solution, "TypoRename");
-
-                var renames = RenameRefactoringService.Instance.CreateAtomicRenames(declared, newName, true).ToList();
-               // var workflow = RenameFromContexts.InitFromNameChanges(solution, renames);
-                //                workflow.CreateRefactoring();
-                Lifetimes.Using(lifetime => RefactoringActionUtil.ExecuteRefactoring(solution.GetComponent<IActionManager>().DataContexts.CreateOnSelection(lifetime, DataRules.AddRule("DoTypoRenameWorkflow", DataConstants.SOLUTION, solution)), workflow));
+                var workflow = (IRefactoringWorkflow)new MethodRenameWorkflow(suggests, RenameRefactoringService.Instance, solution, "TypoRename");
+                Lifetimes.Using(lifetime =>
+                {
+                    var dataRules = DataRules.AddRule("DoTypoRenameWorkflow", ProjectModelDataConstants.SOLUTION, solution);
+                    var dataContext = solution.GetComponent<IActionManager>().DataContexts.CreateOnSelection(lifetime, dataRules);
+                    RefactoringActionUtil.ExecuteRefactoring(dataContext, workflow);
+                });
             }
         }
     }
