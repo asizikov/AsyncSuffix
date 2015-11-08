@@ -17,13 +17,6 @@ build:
   verbosity: minimal
   #publish_nuget: true
 test: off
-nuget:
-  disable_publish_on_pr: true
-
-after_build: 
-  - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version %appveyor_build_version%
-  - ps: appveyor PushArtifact Sizikov.AsyncSuffix.%appveyor_build_version%.nupkg
-
 artifacts:
   - path: sources/**/bin/*.nupkg
 
@@ -37,4 +30,3 @@ deploy:
     branch:
       - master
       - develop
-      - feature/sdk-10
