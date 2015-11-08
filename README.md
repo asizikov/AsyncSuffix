@@ -1,6 +1,12 @@
-# AsyncSuffix plugin for [ReSharper](https://www.jetbrains.com/resharper/) 9.1
+# AsyncSuffix plugin for [ReSharper](https://www.jetbrains.com/resharper/) 10
 
-[![Build status](https://ci.appveyor.com/api/projects/status/jo72bgcj0twlskbt?svg=true)](https://ci.appveyor.com/project/asizikov/asyncsuffix)
+##CI Statuses
+
+Master : [![Build status](https://ci.appveyor.com/api/projects/status/jo72bgcj0twlskbt/branch/master?svg=true)](https://ci.appveyor.com/project/asizikov/asyncsuffix/branch/master)
+
+Develop: [![Build status](https://ci.appveyor.com/api/projects/status/jo72bgcj0twlskbt/branch/develop?svg=true)](https://ci.appveyor.com/project/asizikov/asyncsuffix/branch/develop)
+
+Feature: [![Build status](https://ci.appveyor.com/api/projects/status/jo72bgcj0twlskbt?svg=true)](https://ci.appveyor.com/project/asizikov/asyncsuffix)
 
 ReSharper plugin.
 

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
-using JetBrains.Application;
+using System.Linq;
 using JetBrains.Application.DataContext;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
 using JetBrains.ReSharper.Psi.Naming.Impl;
-using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Refactorings.Rename;
 
 namespace Sizikov.AsyncSuffix
@@ -26,28 +24,21 @@ namespace Sizikov.AsyncSuffix
       }
     }
 
-    public MethodRenameWorkflow(List<string> suggestions, IShellLocks locks, SearchDomainFactory searchDomainFactory, RenameRefactoringService renameRefactoringService, ISolution solution, string actionId)
-            :base(locks, searchDomainFactory, renameRefactoringService, solution, actionId)
+    public MethodRenameWorkflow(List<string> suggestions, RenameRefactoringService renameRefactoringService, ISolution solution, string actionId)
+            :base(renameRefactoringService, solution, actionId)
     {
       Suggestions = suggestions;
     }
 
     public override bool Initialize(IDataContext context)
     {
-      var flag = base.Initialize(context);
-      var list1 = typeof (RenameWorkflow).GetField("myRoots", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(this) as List<NameRoot>;
-      if (list1 != null)
-      {
-        list1.Clear();
-        foreach (var str in Suggestions)
-        {
-          var list2 = list1;
-            var list3 = new List<NameInnerElement> {new NameWord(str, str)};
-            var nameRoot = new NameRoot(list3, PluralityKinds.Single, true);
-          list2.Add(nameRoot);
-        }
-      }
-      return flag;
+        var flag = base.Initialize(context);
+        var roots =
+              Suggestions.Select(str => new List<NameInnerElement> {new NameWord(str, str)})
+                  .Select(nameElement => new NameRoot(nameElement, PluralityKinds.Single, true));
+        DataModel.Roots = roots;
+
+        return flag;
     }
   }
 }
