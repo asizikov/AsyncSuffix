@@ -1,5 +1,11 @@
-branches:
+-
+  branches:
+    only:
+      - master
+      - develop
+      configuration: Release
+- 
+  branches:
   only:
-    - master
-    - develop
     - feature/conditional-build
+    configuration: Debug
