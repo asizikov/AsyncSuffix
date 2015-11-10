@@ -3,10 +3,10 @@
     only:
       - master
       - develop
-    configuration: Release
-    platform: Any CPU
+  configuration: Release
+  platform: Any CPU
 - 
   branches:
-  only:
-    - feature/conditional-build
+    only:
+      - feature/conditional-build
   configuration: Debug
