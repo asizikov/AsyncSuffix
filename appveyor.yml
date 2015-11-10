@@ -1,4 +1,5 @@
 branches:
-  - master
-  - develop
-  - feature/conditional-build
+  only:
+    - master
+    - develop
+    - feature/conditional-build
