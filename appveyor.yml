@@ -5,8 +5,17 @@
       - develop
   configuration: Release
   platform: Any CPU
+  cache:
+    - packages -> **\packages.config
+    - C:\ProgramData\chocolatey\bin -> appveyor.yml
+    - C:\ProgramData\chocolatey\lib -> appveyor.yml
 - 
   branches:
     only:
       - feature/conditional-build
   configuration: Debug
+  platform: Any CPU
+  cache:
+    - packages -> **\packages.config
+    - C:\ProgramData\chocolatey\bin -> appveyor.yml
+    - C:\ProgramData\chocolatey\lib -> appveyor.yml
