@@ -31,7 +31,9 @@
     - C:\ProgramData\chocolatey\lib -> appveyor.yml
   install:
     - choco install gitversion.portable -y
-
+  environment:
+    private_nuget_api_key:
+      secure: JiwfYhXw/Qj6yC2oJcixcgH7gChQmZp8HDPJY1MKxBY=
   before_build:
     - ps: nuget restore
     - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
@@ -41,3 +43,4 @@
   test: off
   after_build:
     - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
+    - ps: nuget push *.nupkg -ApiKey %private_nuget_api_key% -Source https://ci.appveyor.com/nuget/asizikov-private/api/v2/package
