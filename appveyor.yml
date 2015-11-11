@@ -40,4 +40,4 @@
     verbosity: minimal
   test: off
   after_build:
-    - nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
+    - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
