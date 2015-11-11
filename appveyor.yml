@@ -45,5 +45,4 @@
   test: off
   after_build:
     - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
-    - ps: Write-Host %private_nuget_api_key%
-    - ps: nuget push *.nupkg -ApiKey %private_nuget_api_key% -Source https://ci.appveyor.com/nuget/asizikov-private/api/v2/package
+    - ps: nuget push *.nupkg -ApiKey (get-item env:private_nuget_api_key).Value -Source https://ci.appveyor.com/nuget/asizikov-private/api/v2/package
