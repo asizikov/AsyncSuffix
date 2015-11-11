@@ -34,6 +34,8 @@
   environment:
     private_nuget_api_key:
       secure: JiwfYhXw/Qj6yC2oJcixcgH7gChQmZp8HDPJY1MKxBY=
+  nuget:
+    account_feed: true
   before_build:
     - ps: nuget restore
     - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
