@@ -23,7 +23,7 @@
   branches:
     only:
       - feature/conditional-build
-  configuration: Debug
+  configuration: Release
   platform: Any CPU
   cache:
     - packages -> **\packages.config
