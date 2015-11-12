@@ -22,7 +22,7 @@
 - 
   branches:
     only:
-      - feature/conditional-build
+      - /feature/.*/
   configuration: Release
   platform: Any CPU
   cache:
