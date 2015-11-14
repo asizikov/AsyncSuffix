@@ -51,3 +51,24 @@
   after_build:
     - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
     - ps: nuget push *.nupkg -ApiKey (get-item env:private_nuget_api_key).Value -Source https://ci.appveyor.com/nuget/asizikov-private/api/v2/package
+-
+  branches:
+    only:
+      - /pull*/
+  configuration: Release
+  platform: Any CPU
+  cache:
+    - packages -> **\packages.config
+    - C:\ProgramData\chocolatey\bin -> appveyor.yml
+    - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  install:
+    - choco install gitversion.portable -y
+  nuget:
+    account_feed: true
+  before_build:
+    - ps: nuget restore
+    - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
+  build:
+    project: AsyncSuffix.sln
+    verbosity: minimal
+  test: off
