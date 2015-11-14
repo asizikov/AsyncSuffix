@@ -1,32 +1,78 @@
-configuration: Release
-platform: Any CPU
-cache:
-  - packages -> **\packages.config
-  - C:\ProgramData\chocolatey\bin -> appveyor.yml
-  - C:\ProgramData\chocolatey\lib -> appveyor.yml
-
-install:
-  - choco install gitversion.portable -y
-
-before_build:
- - ps: nuget restore
- - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
-
-build:
-  project: AsyncSuffix.sln
-  verbosity: minimal
-  #publish_nuget: true
-test: off
-artifacts:
-  - path: sources/**/bin/*.nupkg
-
-deploy:
-  provider: NuGet
-  server: https://resharper-plugins.jetbrains.com
-  api_key: 
-    secure: RjiHK3Oxp74LUrI1/vmc2S36zOSRLxFM1Eq0Qn4hixWiou11jFqUbW2ukMNXrazP
-  artifact: /.*\.nupkg/
-  on:
-    branch:
+-
+  branches:
+    only:
       - master
       - develop
+  configuration: Release
+  platform: Any CPU
+  cache:
+    - packages -> **\packages.config
+    - C:\ProgramData\chocolatey\bin -> appveyor.yml
+    - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  install:
+    - choco install gitversion.portable -y
+  environment:
+    resharper_nuget_api_key:
+      secure: RjiHK3Oxp74LUrI1/vmc2S36zOSRLxFM1Eq0Qn4hixWiou11jFqUbW2ukMNXrazP
+  before_build:
+    - ps: nuget restore
+    - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
+  build:
+    project: AsyncSuffix.sln
+    verbosity: minimal
+  test: off
+  after_build:
+    - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
+    - ps: nuget push *.nupkg -ApiKey (get-item env:resharper_nuget_api_key).Value -Source https://resharper-plugins.jetbrains.com
+- 
+  branches:
+    only:
+      - /feature/.*/
+  configuration: Release
+  platform: Any CPU
+  pull_requests:
+    do_not_increment_build_number: true
+  cache:
+    - packages -> **\packages.config
+    - C:\ProgramData\chocolatey\bin -> appveyor.yml
+    - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  install:
+    - choco install gitversion.portable -y
+  environment:
+    private_nuget_api_key:
+      secure: JiwfYhXw/Qj6yC2oJcixcgH7gChQmZp8HDPJY1MKxBY=
+  nuget:
+    account_feed: true
+  before_build:
+    - ps: nuget restore
+    - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
+  build:
+    project: AsyncSuffix.sln
+    verbosity: minimal
+  test: off
+  after_build:
+    - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
+    - ps: nuget push *.nupkg -ApiKey (get-item env:private_nuget_api_key).Value -Source https://ci.appveyor.com/nuget/asizikov-private/api/v2/package
+-
+  branches:
+    only:
+      - /.*/merge/
+  configuration: Release
+  platform: Any CPU
+  pull_requests:
+    do_not_increment_build_number: true
+  cache:
+    - packages -> **\packages.config
+    - C:\ProgramData\chocolatey\bin -> appveyor.yml
+    - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  install:
+    - choco install gitversion.portable -y
+  nuget:
+    account_feed: true
+  before_build:
+    - ps: nuget restore
+    - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
+  build:
+    project: AsyncSuffix.sln
+    verbosity: minimal
+  test: off
