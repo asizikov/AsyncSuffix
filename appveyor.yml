@@ -30,6 +30,8 @@
       - /feature/.*/
   configuration: Release
   platform: Any CPU
+  pull_requests:
+    do_not_increment_build_number: true
   cache:
     - packages -> **\packages.config
     - C:\ProgramData\chocolatey\bin -> appveyor.yml
@@ -54,9 +56,11 @@
 -
   branches:
     only:
-      - /pull*/
+      - /.*/merge/
   configuration: Release
   platform: Any CPU
+  pull_requests:
+    do_not_increment_build_number: true
   cache:
     - packages -> **\packages.config
     - C:\ProgramData\chocolatey\bin -> appveyor.yml
