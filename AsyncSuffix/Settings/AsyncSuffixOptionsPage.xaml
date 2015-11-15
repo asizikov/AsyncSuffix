@@ -40,6 +40,8 @@
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <CheckBox IsChecked="{Binding ExcludeTestMethodsFromAnalysis.Value, Mode=TwoWay}"
                   Content="Exclude test methods from analysis" />
+                <CheckBox IsChecked="{Binding CustomAsyncTypesEnabled.Value, Mode=TwoWay}"
+                  Content="Treat custom types as async" />
             </StackPanel>
         </Grid>
     </Grid>
