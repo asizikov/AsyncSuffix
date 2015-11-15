@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using JetBrains.ActionManagement;
 using JetBrains.Application.DataContext;
 using JetBrains.DataFlow;
@@ -8,12 +7,8 @@ using JetBrains.ProjectModel.DataContext;
 using JetBrains.ReSharper.Feature.Services.Bulbs;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Search;
-using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.TextControl;
-using DataConstants = JetBrains.ProjectModel.DataContext.DataConstants;
 
 namespace Sizikov.AsyncSuffix
 {
@@ -40,12 +35,11 @@ namespace Sizikov.AsyncSuffix
             var declared = MethodDeclaration.DeclaredElement;
             if (declared != null)
             {
-                var newName = declared.ShortName + "Async";
-                var suggests = new List<string> {newName};
+                var suggests = AsyncMethodNameSuggestions.Get(MethodDeclaration);
                 var workflow = (IRefactoringWorkflow)new MethodRenameWorkflow(suggests, RenameRefactoringService.Instance, solution, "TypoRename");
                 Lifetimes.Using(lifetime =>
                 {
-                    var dataRules = DataRules.AddRule("DoTypoRenameWorkflow", ProjectModelDataConstants.SOLUTION, solution);
+                    var dataRules = DataRules.AddRule("DoAsyncMethodRenameWorkflow", ProjectModelDataConstants.SOLUTION, solution);
                     var dataContext = solution.GetComponent<IActionManager>().DataContexts.CreateOnSelection(lifetime, dataRules);
                     RefactoringActionUtil.ExecuteRefactoring(dataContext, workflow);
                 });

@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analyzer\AsyncMethodNameUtil.cs" />
+    <Compile Include="AsyncMethodNameSuggestions.cs" />
     <Compile Include="RenameOverloadsPageDecorator.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixBulbItem.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixQuickFix.cs" />
