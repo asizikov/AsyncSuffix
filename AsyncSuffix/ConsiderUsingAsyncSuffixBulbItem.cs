@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using JetBrains.ActionManagement;
+﻿using JetBrains.ActionManagement;
 using JetBrains.Application.DataContext;
 using JetBrains.DataFlow;
 using JetBrains.ProjectModel;

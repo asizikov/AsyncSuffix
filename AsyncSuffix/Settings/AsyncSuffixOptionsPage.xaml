@@ -15,9 +15,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <TextBlock Text="AsyncSuffix:" FontWeight="SemiBold"
-               Margin="{StaticResource LabelMargin}" />
         <TextBlock Grid.Row="0" TextAlignment="Right" Margin="{StaticResource LabelMargin}">
         </TextBlock>
         <Grid Grid.Row="1">
