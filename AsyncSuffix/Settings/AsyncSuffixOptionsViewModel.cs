@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections.ObjectModel;
+using JetBrains.Annotations;
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
 using JetBrains.UI.Options;
@@ -27,5 +28,7 @@ namespace Sizikov.AsyncSuffix.Settings
 
         [NotNull]
         public IProperty<bool> CustomAsyncTypesEnabled { get; private set; }
+
+        public ObservableCollection<CustomAsyncTypeViewModel> CustomAsyncTypes { get; set; } 
     }
 }

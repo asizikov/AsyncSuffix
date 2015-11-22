@@ -7,9 +7,7 @@ using JetBrains.UI.Options.OptionPages;
 
 namespace Sizikov.AsyncSuffix.Settings
 {
-    [OptionsPage(
-     id: PID, name: "AsyncSuffix",
-     typeofIcon: typeof(ServicesThemedIcons.AnalyzeThis),
+    [OptionsPage(PID, "AsyncSuffix", typeof(ServicesThemedIcons.AnalyzeThis),
      ParentId = EnvironmentPage.Pid)]
     public sealed partial class AsyncSuffixOptionsPage : IOptionsPage
     {

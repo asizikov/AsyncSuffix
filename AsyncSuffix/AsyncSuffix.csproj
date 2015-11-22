@@ -181,6 +181,7 @@
     <Compile Include="Settings\AsyncSuffixOptionsPage.xaml.cs">
       <DependentUpon>AsyncSuffixOptionsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings\CustomAsyncTypeViewModel.cs" />
     <Compile Include="ZoneMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

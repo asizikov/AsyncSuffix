@@ -39,6 +39,17 @@
                   Content="Exclude test methods from analysis" />
                 <CheckBox IsChecked="{Binding CustomAsyncTypesEnabled.Value, Mode=TwoWay}"
                   Content="Treat custom types as async" />
+                <GroupBox Header="Custom async types">
+                    <StackPanel>
+                    <TextBlock Text="Treat thise types as async:"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Add"/>
+                            <Button Content="Remove"/>
+                         <Button Content="Edit"/>
+                        </StackPanel>
+                            <ListBox />
+                    </StackPanel>
+                </GroupBox>
             </StackPanel>
         </Grid>
     </Grid>
