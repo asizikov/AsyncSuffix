@@ -178,21 +178,13 @@
     <Compile Include="Settings\AsyncSuffixSettingsAccessor.cs" />
     <Compile Include="Settings\AsyncSuffixSettings.cs" />
     <Compile Include="Settings\AsyncSuffixOptionsViewModel.cs" />
-    <Compile Include="Settings\AsyncSuffixOptionsPage.xaml.cs">
-      <DependentUpon>AsyncSuffixOptionsPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Settings\AsyncSuffixOptionsPage.xaml.cs" />
     <Compile Include="Settings\CustomAsyncTypeViewModel.cs" />
     <Compile Include="ZoneMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Settings\AsyncSuffixOptionsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
