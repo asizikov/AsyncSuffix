@@ -12,7 +12,7 @@ namespace Sizikov.AsyncSuffix
         private const string Async = "Async";
         private static readonly List<string> typos = new List<string>
                 {
-                    "Asyn", "Asinc", "Asin", "async", "asyn", "asinc"
+                    "Asyn", "Asinc", "Asin", "Asynch", "async", "asyn", "asinc", "asynch"
                 };
 
         [NotNull]
