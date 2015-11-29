@@ -56,10 +56,10 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 var returnType = declaredElement.ReturnType as IDeclaredType;
                 if (returnType != null)
                 {
-                    var customTypes = settings.GetValue(AsyncSuffixSettingsAccessor.CustomAsyncTypes);
                     var clrTypeName = returnType.GetClrName();
-                    string value;
-                    bool isCustomAsyncType = customTypes.TryGet(clrTypeName.FullName, out value);
+                    string value =
+                    settings.GetIndexedValue(AsyncSuffixSettingsAccessor.CustomAsyncTypes, clrTypeName.FullName);
+                    bool isCustomAsyncType = !string.IsNullOrEmpty(value);
                     
                     if (returnType.IsTaskType() || isCustomAsyncType)
                     {
