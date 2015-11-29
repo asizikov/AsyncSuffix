@@ -9,7 +9,7 @@
         <projectUrl>https://github.com/asizikov/AsyncSuffix</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Task returning method's naming analyzer. Async methods should have 'Async' suffix.</description>
-        <releaseNotes>ReSharper 10 support</releaseNotes>
+        <releaseNotes>* Improved suggestions\n\r * Custom async types support\n\r</releaseNotes>
         <language>en-US</language>
         <tags>async method, naming, task</tags>
         <dependencies>

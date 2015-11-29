@@ -177,7 +177,6 @@
     <Compile Include="MethodRenameWorkflow.cs" />
     <Compile Include="Settings\AsyncSuffixSettingsAccessor.cs" />
     <Compile Include="Settings\AsyncSuffixSettings.cs" />
-    <Compile Include="Settings\AsyncSuffixOptionsViewModel.cs" />
     <Compile Include="Settings\AsyncSuffixOptionsPage.xaml.cs" />
     <Compile Include="Settings\CustomAsyncTypeViewModel.cs" />
     <Compile Include="ZoneMarker.cs" />

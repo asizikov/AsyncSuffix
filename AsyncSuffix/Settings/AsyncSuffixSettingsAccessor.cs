@@ -11,10 +11,7 @@ namespace Sizikov.AsyncSuffix.Settings
         [NotNull] public static readonly Expression<Func<AsyncSuffixSettings, bool>>
             ExcludeTestMethodsFromAnalysis = x => x.ExcludeTestMethodsFromAnalysis;
 
-        [NotNull] public static readonly Expression<Func<AsyncSuffixSettings, bool>> CustomAsyncTypesEnabled =
-            x => x.CustomAsyncTypesEnabled;
-
-        [NotNull] public static readonly Expression<Func<AsyncSuffixSettings, IIndexedEntry<IClrTypeName, bool>>>
+        [NotNull] public static readonly Expression<Func<AsyncSuffixSettings, IIndexedEntry<string,IClrTypeName>>>
             CustomAsyncTypes =
                 x => x.CustomAsyncTypes;
     }
