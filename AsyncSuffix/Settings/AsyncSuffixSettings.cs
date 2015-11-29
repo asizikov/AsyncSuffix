@@ -13,6 +13,6 @@ namespace Sizikov.AsyncSuffix.Settings
         public bool CustomAsyncTypesEnabled { get; set; }
 
         [SettingsIndexedEntry("Custom types list")]
-        public IIndexedEntry<string, IClrTypeName> CustomAsyncTypes { get; set; }
+        public IIndexedEntry<string, string> CustomAsyncTypes { get; set; }
     }
 }

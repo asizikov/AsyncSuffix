@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.Application.Interop.NativeHook;
 using JetBrains.Application.Settings;
-using JetBrains.Application.Settings.Store;
 using JetBrains.DataFlow;
-using JetBrains.Metadata.Reader.API;
-using JetBrains.Metadata.Reader.Impl;
 using JetBrains.ReSharper.Feature.Services.Resources;
 using JetBrains.UI.Application;
 using JetBrains.UI.Options;
@@ -41,29 +35,29 @@ namespace Sizikov.AsyncSuffix.Settings
                 iuiApplication, editItemViewModelFactory);
             var customAsyncTypes = new StringCollectionEditViewModel(lifetime, "Treat these types as async:",
                 buttonProviderFactory, editItemViewModelFactory);
-            ContextBoundSettingStoreEx.EnumerateIndexedEntry(store, AsyncSuffixSettingsAccessor.CustomAsyncTypes)
-                .Where(pair => pair.First == pair.Second.FullName)
-                .Select(pair => pair.First)
+            store.EnumEntryIndices(AsyncSuffixSettingsAccessor.CustomAsyncTypes)
                 .ToArray()
                 .ForEach(x => customAsyncTypes.AddItem(x));
-            customAsyncTypes.Items.CollectionChanged += (o, e) => ApplyDiff(AsyncSuffixSettingsAccessor.CustomAsyncTypes, customAsyncTypes.Items.Select(x => x.PresentableName.ToString(false)));
+            customAsyncTypes.Items.CollectionChanged += (o, e) =>
+            {
+                foreach (
+                    var entryIndex in
+                        OptionsSettingsSmartContext.EnumEntryIndices(AsyncSuffixSettingsAccessor.CustomAsyncTypes)
+                            .ToArray())
+                {
+                    OptionsSettingsSmartContext.RemoveIndexedValue(AsyncSuffixSettingsAccessor.CustomAsyncTypes,
+                        entryIndex);
+                }
+                foreach (
+                    var editItemViewModel in
+                        customAsyncTypes.Items)
+                {
+                    OptionsSettingsSmartContext.SetIndexedValue(AsyncSuffixSettingsAccessor.CustomAsyncTypes,
+                        editItemViewModel.PresentableName, editItemViewModel.PresentableName);
+                }
+            };
             AddHeader("Custom types");
             AddCustomOption(customAsyncTypes);
-        }
-
-        private void ApplyDiff(Expression<Func<AsyncSuffixSettings, IIndexedEntry<string, IClrTypeName>>> keyExpression, IEnumerable<string> newValues)
-        {
-            var addedAlreadyGeneratedFileMasks = new HashSet<string>();
-            foreach (var pair in ContextBoundSettingStoreEx.EnumerateIndexedEntry(OptionsSettingsSmartContext, keyExpression))
-            {
-                var entryIndex = pair.First;
-                if (!newValues.Contains(entryIndex))
-                    OptionsSettingsSmartContext.RemoveIndexedValue(keyExpression, entryIndex);
-                else
-                    addedAlreadyGeneratedFileMasks.Add(entryIndex);
-            }
-            foreach (var entryIndex in newValues.Where(x => !addedAlreadyGeneratedFileMasks.Contains(x)))
-                OptionsSettingsSmartContext.SetIndexedValue(keyExpression, entryIndex, new ClrTypeName(entryIndex));
         }
     }
 }
