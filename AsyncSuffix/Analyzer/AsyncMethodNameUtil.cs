@@ -5,6 +5,7 @@ using JetBrains.Application.Settings;
 using JetBrains.Metadata.Reader.API;
 using JetBrains.Metadata.Reader.Impl;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Impl;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
@@ -62,9 +63,8 @@ namespace Sizikov.AsyncSuffix.Analyzer
                     settings.EnumEntryIndices(AsyncSuffixSettingsAccessor.CustomAsyncTypes)
                 .ToArray()
                 .ForEach(type => customAsyncTypes.Add(TypeFactory.CreateTypeByCLRName(type, declaredElement.Module)));
-
-                    var isCustomAsyncType = customAsyncTypes.Any(type => returnType.IsSubtypeOf(type));
-
+                    var conversionRule = new CSharpTypeConversionRule(returnType.Module);
+                    var isCustomAsyncType = customAsyncTypes.Any(type => returnType.IsSubtypeOf(type) || returnType.IsImplicitlyConvertibleTo(type, conversionRule));
                    
                     if (returnType.IsTaskType() || isCustomAsyncType)
                     {
