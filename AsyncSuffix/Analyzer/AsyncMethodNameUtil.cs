@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Application.Settings;
 using JetBrains.Metadata.Reader.API;
 using JetBrains.Metadata.Reader.Impl;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Util;
 using Sizikov.AsyncSuffix.Settings;
 
 namespace Sizikov.AsyncSuffix.Analyzer
@@ -56,11 +58,14 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 var returnType = declaredElement.ReturnType as IDeclaredType;
                 if (returnType != null)
                 {
-                    var clrTypeName = returnType.GetClrName();
-                    string value =
-                    settings.GetIndexedValue(AsyncSuffixSettingsAccessor.CustomAsyncTypes, clrTypeName.FullName);
-                    bool isCustomAsyncType = !string.IsNullOrEmpty(value);
-                    
+                    var customAsyncTypes = new List<IDeclaredType>();
+                    settings.EnumEntryIndices(AsyncSuffixSettingsAccessor.CustomAsyncTypes)
+                .ToArray()
+                .ForEach(type => customAsyncTypes.Add(TypeFactory.CreateTypeByCLRName(type, declaredElement.Module)));
+
+                    var isCustomAsyncType = customAsyncTypes.Any(type => returnType.IsSubtypeOf(type));
+
+                   
                     if (returnType.IsTaskType() || isCustomAsyncType)
                     {
                         return true;
