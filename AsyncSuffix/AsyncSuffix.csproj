@@ -8,11 +8,14 @@
     <ProjectGuid>{752FF9EC-357F-4272-92AD-E4DAB15312C1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <HostFullIdentifier>ReSharperPlatformVs12Plugins</HostFullIdentifier>
+    <HostFullIdentifier>ReSharperPlatformVs14Plugins</HostFullIdentifier>
     <RootNamespace>Sizikov.AsyncSuffix</RootNamespace>
     <AssemblyName>Sizikov.AsyncSuffix</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix ReSharper /ReSharper.Internal</StartArguments>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -167,6 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analyzer\AsyncMethodNameUtil.cs" />
+    <Compile Include="Analyzer\TestAttributesExtension.cs" />
+    <Compile Include="AsyncMethodNameSuggestions.cs" />
     <Compile Include="RenameOverloadsPageDecorator.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixBulbItem.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixQuickFix.cs" />
@@ -176,21 +181,13 @@
     <Compile Include="MethodRenameWorkflow.cs" />
     <Compile Include="Settings\AsyncSuffixSettingsAccessor.cs" />
     <Compile Include="Settings\AsyncSuffixSettings.cs" />
-    <Compile Include="Settings\AsyncSuffixOptionsViewModel.cs" />
-    <Compile Include="Settings\AsyncSuffixOptionsPage.xaml.cs">
-      <DependentUpon>AsyncSuffixOptionsPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Settings\AsyncSuffixOptionsPage.xaml.cs" />
+    <Compile Include="Settings\CustomAsyncTypeViewModel.cs" />
     <Compile Include="ZoneMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Settings\AsyncSuffixOptionsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
