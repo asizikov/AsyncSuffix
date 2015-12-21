@@ -23,7 +23,7 @@
   test: off
   after_build:
     - ps: nuget pack AsyncSuffix/AsyncSuffix.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
-    - ps: nuget push *.nupkg -ApiKey (get-item env:resharper_nuget_api_key).Value -Source https://resharper-plugins.jetbrains.com
+    - ps: if(-not $env:APPVEYOR_PULL_REQUEST_NUMBER){ nuget push *.nupkg -ApiKey (get-item env:resharper_nuget_api_key).Value -Source https://resharper-plugins.jetbrains.com }
 - 
   branches:
     only:
