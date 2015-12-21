@@ -18,7 +18,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 return;
             }
 
-            if (AsyncMethodNameUtil.IsAsyncSuffixMissing(methodDeclaration))
+            if (methodDeclaration.IsAsyncSuffixMissing())
             {
                 consumer.AddHighlighting(new ConsiderUsingAsyncSuffixHighlighting(methodDeclaration));
             }

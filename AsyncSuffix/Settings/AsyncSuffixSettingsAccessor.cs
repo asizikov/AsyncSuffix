@@ -5,7 +5,7 @@ using JetBrains.Application.Settings.Store;
 
 namespace Sizikov.AsyncSuffix.Settings
 {
-    public static class AsyncSuffixSettingsAccessor
+    internal static class AsyncSuffixSettingsAccessor
     {
         [NotNull] public static readonly Expression<Func<AsyncSuffixSettings, bool>>
             ExcludeTestMethodsFromAnalysis = x => x.ExcludeTestMethodsFromAnalysis;

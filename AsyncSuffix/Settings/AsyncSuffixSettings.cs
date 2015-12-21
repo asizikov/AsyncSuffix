@@ -1,6 +1,5 @@
 ﻿using JetBrains.Application.Settings;
 using JetBrains.Application.Settings.Store;
-using JetBrains.Metadata.Reader.API;
 
 namespace Sizikov.AsyncSuffix.Settings
 {
