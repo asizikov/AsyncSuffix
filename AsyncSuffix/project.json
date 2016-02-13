@@ -1,0 +1,15 @@
+﻿{
+  "dependencies": {
+    "Antlr2.Tools": "2.7.6.4",
+    "JetBrains.Annotations": "10.0.0",
+    "JetBrains.Mono.Posix": "0.1.0",
+    "JetBrains.ReSharper.SDK": "10.1.20160212.101132-Eap2",
+    "Mono.Posix": "4.0.0"
+  },
+  "frameworks": {
+    "net4": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
