@@ -24,7 +24,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 var excludeTestMethods = settings.GetValue(AsyncSuffixSettingsAccessor.ExcludeTestMethodsFromAnalysis);
                 if (excludeTestMethods)
                 {
-                    if (methodDeclaration.DeclaredElement.IsTestMethod())
+                    if (declaredElement.IsTestMethod())
                     {
                         return false;
                     }
