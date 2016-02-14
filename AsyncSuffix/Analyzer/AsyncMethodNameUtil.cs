@@ -43,19 +43,9 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 var customAsyncTypes = new List<IDeclaredType>();
                 customAsyncTypeNames
                     .ForEach(type => customAsyncTypes.Add(TypeFactory.CreateTypeByCLRName(type, declaredElement.Module)));
-                var conversionRule = new CSharpTypeConversionRule(returnType.Module);
-                var isCustomAsyncType = customAsyncTypes.Any(type => returnType.IsSubtypeOf(type) || returnType.IsImplicitlyConvertibleTo(type, conversionRule));
-                if (!isCustomAsyncType)
-                {
-                    var declaredTypes = returnType.GetSuperTypes();
-                    var clrNames = declaredTypes.Select(declaredType => declaredType.GetClrName()).ToList();
-                    clrNames.Add(returnType.GetClrName());
 
-                    if (clrNames.Any(clrTypeName => customAsyncTypeNames.Contains(clrTypeName.FullName)))
-                    {
-                        isCustomAsyncType = true;
-                    }
-                }
+                var returnTypeElement = returnType.GetTypeElement();
+                var isCustomAsyncType = returnTypeElement != null && customAsyncTypes.Any(type => returnTypeElement.IsDescendantOf(type.GetTypeElement()));
 
                 if (returnType.IsTaskType() || isCustomAsyncType)
                 {

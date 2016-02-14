@@ -1,4 +1,5 @@
-﻿namespace ClassLibrary2
+﻿ // ReSharper disable once CheckNamespace
+namespace ClassLibrary1
 {
     public class Class1
     {
