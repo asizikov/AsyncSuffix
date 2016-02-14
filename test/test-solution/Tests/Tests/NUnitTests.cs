@@ -9,6 +9,7 @@ namespace Tests
         [Test]
         public Task MyMethod()
         {
+
             return Task.FromResult<object>(null);
         }
 
