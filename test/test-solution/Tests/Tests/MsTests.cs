@@ -1,18 +1,18 @@
 ﻿using System.Threading.Tasks;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
 {
-    public class XUnitTests
+    [TestClass]
+    public class MsTests
     {
-        [Fact]
+        [TestMethod]
         public Task MyMethod()
         {
             return Task.FromResult<object>(null);
         }
 
-        [Theory]
-        [InlineData(1)]
+        [TestMethod]
         public Task TestCase(int x)
         {
             return Task.FromResult<object>(null);
