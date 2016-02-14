@@ -44,6 +44,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
             }
             return false;
         }
+
         public static bool IsTestMethod(this IDeclaredElement declaredElement)
         {
             var unitTestElement = declaredElement.GetSolution().GetComponent<IUnitTestElementStuff>();
