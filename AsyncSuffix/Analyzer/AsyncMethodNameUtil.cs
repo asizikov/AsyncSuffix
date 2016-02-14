@@ -16,10 +16,15 @@ namespace Sizikov.AsyncSuffix.Analyzer
         public static bool IsAsyncSuffixMissing(this IMethodDeclaration methodDeclaration)
         {
             if (methodDeclaration.IsOverride) return false;
-
             var declaredElement = methodDeclaration.DeclaredElement;
             if (declaredElement != null)
             {
+                var memberInstances = declaredElement.GetAllSuperMembers();
+                if (memberInstances.Count > 0)
+                {
+                    return false;
+                }
+
                 var settings = methodDeclaration.GetSettingsStore();
                 var excludeTestMethods = settings.GetValue(AsyncSuffixSettingsAccessor.ExcludeTestMethodsFromAnalysis);
                 if (excludeTestMethods)
