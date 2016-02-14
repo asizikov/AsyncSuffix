@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "JetBrains.Annotations": "10.1.2-eap",
+    "JetBrains.ReSharper.SDK": "10.1.20160212.101132-Eap2"
+  },
+  "frameworks": {
+    "net4": {}
+  },
+  "runtimes": {
+    "win": { }
+  }
+}
