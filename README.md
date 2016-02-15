@@ -24,3 +24,8 @@ Sometimes you have a type which you want to be treated as asynchronous.
 Since v1.2.0 plugin supports custom types:
 
 ![customasynctype](https://cloud.githubusercontent.com/assets/819053/11931954/0b9996ca-a7f2-11e5-8fce-99a82449737a.PNG) 
+
+##Thanks to
+* JetBrains for [Open Source license](https://www.jetbrains.com/buy/opensource/)
+* [Matt Ellis](https://twitter.com/citizenmatt) for technical support
+* [Serjic Shkredov](https://twitter.com/serjic) for suggestions
