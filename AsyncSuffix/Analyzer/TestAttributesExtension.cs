@@ -3,6 +3,8 @@ using JetBrains.Metadata.Reader.API;
 using JetBrains.Metadata.Reader.Impl;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.UnitTestFramework;
+using JetBrains.ProjectModel;
 
 namespace Sizikov.AsyncSuffix.Analyzer
 {
@@ -20,11 +22,6 @@ namespace Sizikov.AsyncSuffix.Analyzer
 
             TestMethodClrAttributes.Add(
                 new ClrTypeName("Xunit.TheoryAttribute"));
-
-            TestMethodClrAttributes.Add(
-                new ClrTypeName("NUnit.Framework.TestAttribute"));
-            TestMethodClrAttributes.Add(
-                new ClrTypeName("NUnit.Framework.TestCaseAttribute"));
         }
 
         public static bool IsAnnotatedWithKnownTestAttribute(this IMethodDeclaration methodDeclaration)
@@ -46,6 +43,12 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 }
             }
             return false;
+        }
+
+        public static bool IsTestMethod(this IDeclaredElement declaredElement)
+        {
+            var unitTestElement = declaredElement.GetSolution().GetComponent<IUnitTestElementStuff>();
+            return (declaredElement is IMethod || declaredElement is IProperty) && unitTestElement.IsElementOfKind(declaredElement, UnitTestElementKind.Test);
         }
     }
 }
