@@ -10,13 +10,13 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Task returning method's naming analyzer. Async methods should have 'Async' suffix.</description>
         <releaseNotes>
-		&#8226;Improved suggestions;
-		&#8226;Custom async types support;
+		&#8226;Performance improvements;
+		&#8226;Interface implementation excluded from analysis;
 	</releaseNotes>
         <language>en-US</language>
         <tags>async method, naming, task</tags>
         <dependencies>
-            <dependency id="Wave" version="[4.0]" />
+            <dependency id="Wave" version="[4.0,5.0)" />
         </dependencies>
     </metadata>
     <files>
