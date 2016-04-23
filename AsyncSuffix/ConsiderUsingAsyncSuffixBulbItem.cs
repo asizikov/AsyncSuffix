@@ -8,22 +8,20 @@ using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.TextControl;
+using Sizikov.AsyncSuffix.Workflows;
 
 namespace Sizikov.AsyncSuffix
 {
     public sealed class ConsiderUsingAsyncSuffixBulbItem : IBulbAction
     {
-        private IMethodDeclaration MethodDeclaration { get; set; }
+        private IMethodDeclaration MethodDeclaration { get; }
 
         public ConsiderUsingAsyncSuffixBulbItem(IMethodDeclaration methodDeclaration)
         {
             MethodDeclaration = methodDeclaration;
         }
 
-        public string Text
-        {
-            get { return "Add \'Async\' suffix to method name"; }
-        }
+        public string Text => "Add 'Async' suffix to method name";
 
         public void Execute(ISolution solution, ITextControl textControl)
         {
@@ -35,7 +33,9 @@ namespace Sizikov.AsyncSuffix
             if (declared != null)
             {
                 var suggests = AsyncMethodNameSuggestions.Get(MethodDeclaration);
-                var workflow = (IRefactoringWorkflow)new MethodRenameWorkflow(suggests, RenameRefactoringService.Instance, solution, "TypoRename");
+                var workflow =
+                    (IRefactoringWorkflow)
+                        new MethodRenameWorkflow(suggests, solution.GetComponent<RenameRefactoringService>(), solution, "AsyncSuffixMethodRename");
                 Lifetimes.Using(lifetime =>
                 {
                     var dataRules = DataRules.AddRule("DoAsyncMethodRenameWorkflow", ProjectModelDataConstants.SOLUTION, solution);

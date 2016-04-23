@@ -11,7 +11,7 @@ namespace ClassLibrary2
         public abstract Task Do();
     }
 
-    public class ExcludeOverridesAndInterfaceImlementation : Abstract, IInterface
+    public class ExcludeOverridesAndInterfaceImplementation : Abstract, IInterface
     {
         //should not be hilighted
         public override Task Do()
