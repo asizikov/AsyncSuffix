@@ -10,8 +10,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Task returning method's naming analyzer. Async methods should have 'Async' suffix.</description>
         <releaseNotes>
-		&#8226;Performance improvements;
-		&#8226;Interface implementation excluded from analysis;
+		&#8226;ReSharper 2016.1 support;
 	</releaseNotes>
         <language>en-US</language>
         <tags>async method, naming, task</tags>

@@ -1,4 +1,4 @@
-# AsyncSuffix plugin for [ReSharper](https://www.jetbrains.com/resharper/) 10
+# AsyncSuffix plugin for [ReSharper](https://www.jetbrains.com/resharper/)
 
 ##CI Statuses
 
