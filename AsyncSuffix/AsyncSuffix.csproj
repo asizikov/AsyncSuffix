@@ -189,7 +189,6 @@
     <Compile Include="Analyzer\AsyncMethodNameUtil.cs" />
     <Compile Include="Analyzer\TestAttributesExtension.cs" />
     <Compile Include="AsyncMethodNameSuggestions.cs" />
-    <Compile Include="Workflows\ReflectionUtils.cs" />
     <Compile Include="Workflows\RenameOverloadsPageDecorator.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixBulbItem.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixQuickFix.cs" />
