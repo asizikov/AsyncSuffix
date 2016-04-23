@@ -151,6 +151,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Platform.Lib.System.Windows.Interactivity.2.0.20140318.0\lib\System.Windows.Interactivity.dll</HintPath>
@@ -188,13 +189,14 @@
     <Compile Include="Analyzer\AsyncMethodNameUtil.cs" />
     <Compile Include="Analyzer\TestAttributesExtension.cs" />
     <Compile Include="AsyncMethodNameSuggestions.cs" />
-    <Compile Include="RenameOverloadsPageDecorator.cs" />
+    <Compile Include="Workflows\ReflectionUtils.cs" />
+    <Compile Include="Workflows\RenameOverloadsPageDecorator.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixBulbItem.cs" />
     <Compile Include="ConsiderUsingAsyncSuffixQuickFix.cs" />
     <Compile Include="Analyzer\AsyncMethodNameProblemAnalyzer.cs" />
     <Compile Include="Analyzer\ConsiderUsingAsyncSuffixHighlighting.cs" />
     <Compile Include="Analyzer\TaskExtensions.cs" />
-    <Compile Include="MethodRenameWorkflow.cs" />
+    <Compile Include="Workflows\MethodRenameWorkflow.cs" />
     <Compile Include="Settings\AsyncSuffixSettingsAccessor.cs" />
     <Compile Include="Settings\AsyncSuffixSettings.cs" />
     <Compile Include="Settings\AsyncSuffixOptionsPage.xaml.cs" />

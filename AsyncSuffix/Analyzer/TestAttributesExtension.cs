@@ -4,6 +4,7 @@ using JetBrains.Metadata.Reader.Impl;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ProjectModel;
+using JetBrains.ReSharper.UnitTestFramework;
 
 namespace Sizikov.AsyncSuffix.Analyzer
 {

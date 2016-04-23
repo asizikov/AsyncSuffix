@@ -16,7 +16,7 @@
         <language>en-US</language>
         <tags>async method, naming, task</tags>
         <dependencies>
-            <dependency id="Wave" version="[4.0,5.0)" />
+            <dependency id="Wave" version="[5.0]" />
         </dependencies>
     </metadata>
     <files>
