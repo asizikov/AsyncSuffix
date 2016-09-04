@@ -24,7 +24,7 @@ let isPullRequest =
     | None -> false
 
 // NuGet
-let projectName = "MrEric"
+let projectName = "AsyncSuffix"
 let nuspecFileName = projectName + ".nuspec"
 let packageName = "Sizikov." + projectName
 let galleryUri = "https://resharper-plugins.jetbrains.com"

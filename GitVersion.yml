@@ -13,3 +13,5 @@ branches:
   hotfix(es)?[/-]:
     tag: rc
     increment: Patch
+  dev(elop)?(ment)?$:
+    tag: b
