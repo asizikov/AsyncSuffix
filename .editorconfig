@@ -1,0 +1,17 @@
+# Install the EditorConfig VS plugin to automatically apply formatting settings to this solution
+# See http://editorconfig.org/ for syntax
+
+# top-most EditorConfig file
+root = true
+
+[*.config]
+indent_style = space
+indent_size = 2
+
+[*.cs]
+indent_style = space
+indent_size = 4
+
+[*]
+indent_style = space
+indent_size = 4

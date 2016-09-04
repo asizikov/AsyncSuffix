@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{752FF9EC-357F-4272-92AD-E4DAB15312C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <HostFullIdentifier>ReSharperPlatformVs14Plugins</HostFullIdentifier>
+    <RootNamespace>Sizikov.AsyncSuffix</RootNamespace>
+    <AssemblyName>Sizikov.AsyncSuffix</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix ReSharper /ReSharper.Internal</StartArguments>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analyzer\AsyncMethodNameUtil.cs" />
+    <Compile Include="Analyzer\TestAttributesExtension.cs" />
+    <Compile Include="AsyncMethodNameSuggestions.cs" />
+    <Compile Include="Workflows\RenameOverloadsPageDecorator.cs" />
+    <Compile Include="ConsiderUsingAsyncSuffixBulbItem.cs" />
+    <Compile Include="ConsiderUsingAsyncSuffixQuickFix.cs" />
+    <Compile Include="Analyzer\AsyncMethodNameProblemAnalyzer.cs" />
+    <Compile Include="Analyzer\ConsiderUsingAsyncSuffixHighlighting.cs" />
+    <Compile Include="Analyzer\TaskExtensions.cs" />
+    <Compile Include="Workflows\MethodRenameWorkflow.cs" />
+    <Compile Include="Settings\AsyncSuffixSettingsAccessor.cs" />
+    <Compile Include="Settings\AsyncSuffixSettings.cs" />
+    <Compile Include="Settings\AsyncSuffixOptionsPage.xaml.cs" />
+    <Compile Include="Settings\CustomAsyncTypeViewModel.cs" />
+    <Compile Include="ZoneMarker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
