@@ -185,3 +185,7 @@ FakesAssemblies/
 *.nuget.props
 *.nuget.targets
 .vs
+
+/.fake
+/build
+/deploy
