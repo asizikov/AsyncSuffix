@@ -8,9 +8,6 @@ namespace Sizikov.AsyncSuffix.Settings
     {
         public IProperty<string> ClrName { get; set; }
 
-        public IClrTypeName ClrTypeName
-        {
-            get { return new ClrTypeName(ClrName.Value); }
-        }
+        public IClrTypeName ClrTypeName => new ClrTypeName(ClrName.Value);
     }
 }

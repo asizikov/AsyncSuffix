@@ -10,7 +10,7 @@ namespace Sizikov.AsyncSuffix
     public class AsyncMethodNameSuggestions
     {
         private const string Async = "Async";
-        private static readonly List<string> typos = new List<string>
+        private static readonly List<string> Typos = new List<string>
                 {
                     "Asyn", "Asinc", "Asin", "Asynch", "async", "asyn", "asinc", "asynch"
                 };
@@ -18,7 +18,7 @@ namespace Sizikov.AsyncSuffix
         [NotNull]
         public static List<string> Get([NotNull] IMethodDeclaration method)
         {
-            if (method == null) throw new ArgumentNullException("method");
+            if (method == null) throw new ArgumentNullException(nameof(method));
             if (!method.IsValid())
             {
                 return (List<string>) EmptyList<string>.InstanceList;
@@ -30,7 +30,7 @@ namespace Sizikov.AsyncSuffix
                 var newName = shortName + Async;
                 var names = new List<string> { newName };
                 
-                foreach (var pattern in typos)
+                foreach (var pattern in Typos)
                 {
                     if (shortName.EndsWith(pattern))
                     {

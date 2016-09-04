@@ -2,17 +2,16 @@ assembly-informational-format: '{NuGetVersion}'
 mode: ContinuousDeployment
 branches:
   master:
-    tag: s
-  releases?[/-]:
     tag: rc
+    increment: Minor
   features?[/-]:
-    tag: useBranchName
+    tag: rc-{BranchName}
     increment: Minor
   (pull|pull\-requests|pr)[/-]:
-    tag: pr
+    tag: rc-pr-{BranchName}
+    increment: Minor
   hotfix(es)?[/-]:
     tag: rc
-  support[/-]:
-    tag: s
+    increment: Patch
   dev(elop)?(ment)?$:
     tag: b

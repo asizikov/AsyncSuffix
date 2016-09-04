@@ -10,7 +10,7 @@ using Sizikov.AsyncSuffix.Analyzer;
   null,
   HighlightingGroupIds.BestPractice,
   "Consider adding Async suffix",
-  "According to Microsoft gudlines a method which is Task-returning and is asynchronous in nature should have an 'Async' suffix. ",
+  "According to Microsoft guidelines a method which is Task-returning and is asynchronous in nature should have an 'Async' suffix. ",
   Severity.SUGGESTION,
   false)]
 namespace Sizikov.AsyncSuffix.Analyzer
@@ -18,7 +18,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
     [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name, OverlapResolve = OverlapResolveKind.WARNING)]
     public sealed class ConsiderUsingAsyncSuffixHighlighting : IHighlighting
     {
-        public IMethodDeclaration MethodDeclaration { get; set; }
+        public IMethodDeclaration MethodDeclaration { get; private set; }
         public const string SeverityId = "ConsiderUsingAsyncSuffix";
 
         public ConsiderUsingAsyncSuffixHighlighting(IMethodDeclaration methodDeclaration)
@@ -31,20 +31,11 @@ namespace Sizikov.AsyncSuffix.Analyzer
             return MethodDeclaration.NameIdentifier.GetDocumentRange();
         }
 
-        public string ToolTip
-        {
-            get { return "Async method name does not have 'Async' suffix"; }
-        }
+        public string ToolTip => "Async method name does not have 'Async' suffix";
 
-        public string ErrorStripeToolTip
-        {
-            get { return ToolTip; }
-        }
+        public string ErrorStripeToolTip => ToolTip;
 
-        public int NavigationOffsetPatch
-        {
-            get { return 0; }
-        }
+        public int NavigationOffsetPatch => 0;
 
         public bool IsValid()
         {

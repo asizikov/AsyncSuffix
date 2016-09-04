@@ -3,8 +3,8 @@ using JetBrains.Metadata.Reader.API;
 using JetBrains.Metadata.Reader.Impl;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.UnitTestFramework;
 using JetBrains.ProjectModel;
+using JetBrains.ReSharper.UnitTestFramework;
 
 namespace Sizikov.AsyncSuffix.Analyzer
 {
