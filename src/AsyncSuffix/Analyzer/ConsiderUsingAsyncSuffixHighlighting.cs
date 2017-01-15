@@ -11,8 +11,7 @@ using Sizikov.AsyncSuffix.Analyzer;
   HighlightingGroupIds.BestPractice,
   "Consider adding Async suffix",
   "According to Microsoft guidelines a method which is Task-returning and is asynchronous in nature should have an 'Async' suffix. ",
-  Severity.SUGGESTION,
-  false)]
+  Severity.SUGGESTION)]
 namespace Sizikov.AsyncSuffix.Analyzer
 {
     [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name, OverlapResolve = OverlapResolveKind.WARNING)]
