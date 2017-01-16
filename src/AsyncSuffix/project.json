@@ -1,10 +1,10 @@
 ﻿{
   "dependencies": {
-    "JetBrains.Annotations": "10.1.5",
-    "JetBrains.ReSharper.SDK": "2016.2.20160818.171542"
+    "JetBrains.Annotations": "10.2.1",
+    "JetBrains.ReSharper.SDK": "2016.3.20161223.160207"
   },
   "frameworks": {
-    ".NETFramework,Version=v4.0": {}
+    ".NETFramework,Version=v4.5": {}
   },
   "runtimes": {
     "win": {}
