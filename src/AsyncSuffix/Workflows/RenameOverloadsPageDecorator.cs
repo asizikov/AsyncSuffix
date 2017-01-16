@@ -54,15 +54,9 @@ namespace Sizikov.AsyncSuffix.Workflows
             return irefactoringPage;
         }
 
-        public bool Initialize(IProgressIndicator pi)
-        {
-            return OverloadsPage.Initialize(pi);
-        }
+        public bool Initialize(IProgressIndicator pi) => OverloadsPage.Initialize(pi);
 
-        public bool RefreshContents(IProgressIndicator pi)
-        {
-            return OverloadsPage.RefreshContents(pi);
-        }
+        public bool RefreshContents(IProgressIndicator pi) => OverloadsPage.RefreshContents(pi);
 
         private void ShowSuggests()
         {

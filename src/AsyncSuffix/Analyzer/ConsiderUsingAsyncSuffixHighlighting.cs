@@ -25,10 +25,7 @@ namespace Sizikov.AsyncSuffix.Analyzer
             MethodDeclaration = methodDeclaration;
         }
 
-        public DocumentRange CalculateRange()
-        {
-            return MethodDeclaration.NameIdentifier.GetDocumentRange();
-        }
+        public DocumentRange CalculateRange() => MethodDeclaration.NameIdentifier.GetDocumentRange();
 
         public string ToolTip => "Async method name does not have 'Async' suffix";
 
@@ -36,9 +33,6 @@ namespace Sizikov.AsyncSuffix.Analyzer
 
         public int NavigationOffsetPatch => 0;
 
-        public bool IsValid()
-        {
-            return MethodDeclaration == null || MethodDeclaration.IsValid();
-        }
+        public bool IsValid() => MethodDeclaration == null || MethodDeclaration.IsValid();
     }
 }

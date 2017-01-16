@@ -19,13 +19,8 @@ namespace Sizikov.AsyncSuffix
         }
 
         public IEnumerable<IntentionAction> CreateBulbItems()
-        {
-            return new[] { new ConsiderUsingAsyncSuffixBulbItem(Highlighting.MethodDeclaration) }.ToQuickFixIntentions();
-        }
+            => new[] {new ConsiderUsingAsyncSuffixBulbItem(Highlighting.MethodDeclaration)}.ToQuickFixIntentions();
 
-        public bool IsAvailable(IUserDataHolder cache)
-        {
-            return Highlighting.IsValid();
-        }
+        public bool IsAvailable(IUserDataHolder cache) => Highlighting.IsValid();
     }
 }
