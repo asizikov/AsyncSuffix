@@ -7,7 +7,7 @@ open Fake.AppVeyor
 
 let buildDir = "./build/"
 let packagingDir = "./.deploy/"
-let baseVersion = "2016.3.0"
+let baseVersion = "2017.1.0"
 
 let version = 
         match buildServer with 
