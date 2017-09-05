@@ -5,19 +5,19 @@ using JetBrains.Application.UI.UIAutomation;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.UI.CompletionPicker;
+using JetBrains.ReSharper.I18n.Services.Refactoring.Rename;
 using JetBrains.ReSharper.Refactorings.Rename;
 using JetBrains.ReSharper.Refactorings.UI.CommonUI.RefactoringWindows.WinFormsControls;
-using JetBrains.UI.CrossFramework;
 
 namespace Sizikov.AsyncSuffix.Workflows
 {
-    internal class RenameOverloadsPageDecorator : IRefactoringPage
+    internal class RenameOverloadsPageDecorator : IRefactoringPageWithView
     {
-        private RenameOverloadsPageViewModel OverloadsPage { get; }
-        private List<string> Suggestions { get; set; }
+        private RenameResourceFirstPage OverloadsPage { get; }
+        private List<string> Suggestions { get; }
         private NameCompletionEdit EditBox { get; set; }
 
-        public RenameOverloadsPageDecorator(RenameOverloadsPageViewModel overloadsPage, List<string> suggestions)
+        public RenameOverloadsPageDecorator(RenameResourceFirstPage overloadsPage, List<string> suggestions)
         {
             OverloadsPage = overloadsPage;
             Suggestions = suggestions;
