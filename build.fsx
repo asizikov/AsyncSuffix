@@ -60,7 +60,7 @@ Target "CreatePackage" (fun _ ->
 
 Target "PublishPackage" (fun _ -> 
     let branch = Fake.Git.Information.getBranchName "."
-    if branch = "master" then
+    if branch = "master" || Fake.AppVeyor.AppVeyorEnvironment.RepoTag then
         if isLocalBuild then
             trace "Package can only be published from Appveyor build"
         else
@@ -82,7 +82,7 @@ Target "PublishPackage" (fun _ ->
                         })
             | _ ->  trace "Do not publish from local build"
     else 
-        trace "Package can only be published from master branch"
+        trace "Package can only be published from master branch or a tag build"
         DoNothing()
 
 )
