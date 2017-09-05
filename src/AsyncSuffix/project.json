@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "JetBrains.Annotations": "10.4.0",
+    "JetBrains.Annotations": "11.0.0",
     "JetBrains.ReSharper.SDK": "2017.1.20170407.131329"
   },
   "frameworks": {
