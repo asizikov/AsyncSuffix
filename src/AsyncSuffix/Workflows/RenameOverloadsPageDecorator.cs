@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using JetBrains.Application.Progress;
+using JetBrains.Application.UI.UIAutomation;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.UI.CompletionPicker;
 using JetBrains.ReSharper.Refactorings.Rename;
+using JetBrains.ReSharper.Refactorings.UI.CommonUI.RefactoringWindows.WinFormsControls;
 using JetBrains.UI.CrossFramework;
 
 namespace Sizikov.AsyncSuffix.Workflows
