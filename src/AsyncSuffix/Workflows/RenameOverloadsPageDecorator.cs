@@ -1,23 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using JetBrains.Application.Progress;
-using JetBrains.Application.UI.UIAutomation;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.UI.CompletionPicker;
-using JetBrains.ReSharper.I18n.Services.Refactoring.Rename;
 using JetBrains.ReSharper.Refactorings.Rename;
 using JetBrains.ReSharper.Refactorings.UI.CommonUI.RefactoringWindows.WinFormsControls;
 
 namespace Sizikov.AsyncSuffix.Workflows
 {
-    internal class RenameOverloadsPageDecorator : IRefactoringPageWithView
+    internal class RenameOverloadsPageDecorator : IRefactoringPage
     {
-        private RenameResourceFirstPage OverloadsPage { get; }
+        private RenameOverloadsPage OverloadsPage { get; }
         private List<string> Suggestions { get; }
         private NameCompletionEdit EditBox { get; set; }
 
-        public RenameOverloadsPageDecorator(RenameResourceFirstPage overloadsPage, List<string> suggestions)
+        public RenameOverloadsPageDecorator(RenameOverloadsPage overloadsPage, List<string> suggestions)
         {
             OverloadsPage = overloadsPage;
             Suggestions = suggestions;
@@ -27,21 +25,25 @@ namespace Sizikov.AsyncSuffix.Workflows
         public string Description => OverloadsPage.Description;
         public string Title => OverloadsPage.Title;
 
-        public EitherControl View
-        {
-            get
-            {
-                ShowSuggests();
-                return OverloadsPage.View;
-            }
-        }
-
         public bool DoNotShow => OverloadsPage.DoNotShow;
 
         public IRefactoringPage Commit(IProgressIndicator pi)
         {
             var irefactoringPage = OverloadsPage.Commit(pi);
-            var controlViewModel = irefactoringPage as RenameInitialControlViewModel;
+            var originPage = irefactoringPage as RenameInitialControlViewModel;
+            if (originPage == null)
+                return irefactoringPage;
+
+            if (originPage?.View != null)
+            {
+                var renameInitialControl = originPage.View.Control as RenameInitialControl;
+                renameInitialControl.
+            }
+
+            return (IRefactoringPage)new RenameInitialControlDecorator(originPage, this.mySpellService, this.myReSpellerSettings);
+
+            var refactoringPage = OverloadsPage.Commit(pi);
+            var controlViewModel = refactoringPage as RenameInitialControlViewModel;
             if (controlViewModel?.View != null)
             {
                 var renameInitialControl = controlViewModel.View.Control as RenameInitialControl;
@@ -53,7 +55,7 @@ namespace Sizikov.AsyncSuffix.Workflows
                     EditBox.GotFocus += (sender, args) => ShowSuggests();
                 }
             }
-            return irefactoringPage;
+            return refactoringPage;
         }
 
         public bool Initialize(IProgressIndicator pi) => OverloadsPage.Initialize(pi);
