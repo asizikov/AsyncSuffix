@@ -4,6 +4,7 @@ using JetBrains.Application.DataContext;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
 using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
+using JetBrains.ReSharper.I18n.Services.Refactoring.Rename;
 using JetBrains.ReSharper.Psi.Naming.Impl;
 using JetBrains.ReSharper.Refactorings.Rename;
 
@@ -24,7 +25,7 @@ namespace Sizikov.AsyncSuffix.Workflows
         {
             get
             {
-                var renameOverloadsPageViewModel = base.FirstPendingRefactoringPage as RenameOverloadsPageViewModel;
+                var renameOverloadsPageViewModel = base.FirstPendingRefactoringPage as RenameResourceFirstPage;
                 if (renameOverloadsPageViewModel != null)
                 {
                     return new RenameOverloadsPageDecorator(renameOverloadsPageViewModel, Suggestions);

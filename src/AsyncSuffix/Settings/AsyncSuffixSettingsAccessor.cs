@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
-using JetBrains.Application.Settings.Store;
+using JetBrains.Application.Settings;
 
 namespace Sizikov.AsyncSuffix.Settings
 {
