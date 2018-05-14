@@ -1,5 +1,5 @@
-﻿using JetBrains.ActionManagement;
-using JetBrains.Application.DataContext;
+﻿using JetBrains.Application.DataContext;
+using JetBrains.Application.UI.Actions.ActionManager;
 using JetBrains.DataFlow;
 using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.DataContext;

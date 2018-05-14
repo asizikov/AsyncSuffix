@@ -1,21 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using JetBrains.Application.Progress;
+using JetBrains.Application.UI.UIAutomation;
 using JetBrains.DataFlow;
+using JetBrains.PsiFeatures.UIInteractive.Core.CompletionPicker;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
-using JetBrains.ReSharper.Feature.Services.UI.CompletionPicker;
 using JetBrains.ReSharper.Refactorings.Rename;
-using JetBrains.UI.CrossFramework;
 
 namespace Sizikov.AsyncSuffix.Workflows
 {
-    internal class RenameOverloadsPageDecorator : IRefactoringPage
+    internal class RenameOverloadsPageDecorator : IRefactoringPageWithView
     {
-        private RenameOverloadsPageViewModel OverloadsPage { get; }
-        private List<string> Suggestions { get; set; }
+        private RenameInitialControlViewModel OverloadsPage { get; }
+        private List<string> Suggestions { get; }
         private NameCompletionEdit EditBox { get; set; }
 
-        public RenameOverloadsPageDecorator(RenameOverloadsPageViewModel overloadsPage, List<string> suggestions)
+        public RenameOverloadsPageDecorator(RenameInitialControlViewModel overloadsPage, List<string> suggestions)
         {
             OverloadsPage = overloadsPage;
             Suggestions = suggestions;
@@ -38,20 +38,20 @@ namespace Sizikov.AsyncSuffix.Workflows
 
         public IRefactoringPage Commit(IProgressIndicator pi)
         {
-            var irefactoringPage = OverloadsPage.Commit(pi);
-            var controlViewModel = irefactoringPage as RenameInitialControlViewModel;
-            if (controlViewModel?.View != null)
-            {
-                var renameInitialControl = controlViewModel.View.Control as RenameInitialControl;
-                var field = typeof(RenameInitialControl).GetField("myEditboxName", BindingFlags.Instance | BindingFlags.NonPublic);
-                if (field != null)
-                {
-                    EditBox = field.GetValue(renameInitialControl) as NameCompletionEdit;
-                    
-                    EditBox.GotFocus += (sender, args) => ShowSuggests();
-                }
-            }
-            return irefactoringPage;
+            var refactoringPage = OverloadsPage.Commit(pi);
+            //var controlViewModel = refactoringPage as RenameInitialControlViewModel;
+            //if (controlViewModel?.View != null)
+            //{
+            //    var renameInitialControl = controlViewModel.View.Control as RenameInitialControlViewModel;
+            //    var field = typeof(RenameInitialControlViewModel).GetField("myEditboxName", BindingFlags.Instance | BindingFlags.NonPublic);
+            //    if (field != null)
+            //    {
+            //        EditBox = field.GetValue(renameInitialControl) as NameCompletionEdit;
+
+            //        EditBox.GotFocus += (sender, args) => ShowSuggests();
+            //    }
+            //}
+            return refactoringPage;
         }
 
         public bool Initialize(IProgressIndicator pi) => OverloadsPage.Initialize(pi);
@@ -63,8 +63,7 @@ namespace Sizikov.AsyncSuffix.Workflows
             if (EditBox == null)
                 return;
             var method = typeof(CompletionPickerEdit).GetMethod("CompletionListShow", BindingFlags.Instance | BindingFlags.NonPublic);
-            var nameCompletionEdit = EditBox;
-            method.Invoke(nameCompletionEdit, new[] {(object) CompletionPickerEdit.CompletionListShowModeTransition.Soft});
+            method.Invoke(EditBox, new[] {(object) CompletionPickerEdit.CompletionListShowModeTransition.Soft});
         }
     }
 }

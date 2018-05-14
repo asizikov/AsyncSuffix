@@ -24,7 +24,7 @@ namespace Sizikov.AsyncSuffix.Workflows
         {
             get
             {
-                var renameOverloadsPageViewModel = base.FirstPendingRefactoringPage as RenameOverloadsPageViewModel;
+                var renameOverloadsPageViewModel = base.FirstPendingRefactoringPage as RenameInitialControlViewModel;
                 if (renameOverloadsPageViewModel != null)
                 {
                     return new RenameOverloadsPageDecorator(renameOverloadsPageViewModel, Suggestions);

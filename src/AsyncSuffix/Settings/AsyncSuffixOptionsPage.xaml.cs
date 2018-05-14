@@ -1,17 +1,18 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.Application.Interop.NativeHook;
 using JetBrains.Application.Settings;
+using JetBrains.Application.UI.Components;
+using JetBrains.Application.UI.Controls.Dialogs;
+using JetBrains.Application.UI.Controls.StringCollectionEdit.Impl;
+using JetBrains.Application.UI.Controls.StringCollectionEdit.Impl.Buttons;
+using JetBrains.Application.UI.Controls.StringCollectionEdit.Impl.Items;
+using JetBrains.Application.UI.Options;
+using JetBrains.Application.UI.Options.OptionPages;
+using JetBrains.Application.UI.Options.OptionsDialog;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Resources;
-using JetBrains.UI.Application;
-using JetBrains.UI.Options;
-using JetBrains.UI.Options.OptionPages;
-using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
-using JetBrains.UI.Validation;
-using JetBrains.UI.Wpf.Controls.StringCollectionEdit.Impl;
-using JetBrains.UI.Wpf.Controls.StringCollectionEdit.Impl.Buttons;
-using JetBrains.UI.Wpf.Controls.StringCollectionEdit.Impl.Items;
 using JetBrains.Util;
 
 namespace Sizikov.AsyncSuffix.Settings
@@ -23,7 +24,7 @@ namespace Sizikov.AsyncSuffix.Settings
         private const string PageId = "AsyncSuffix";
 
         public AsyncSuffixOptionsPage([NotNull] Lifetime lifetime, [NotNull] OptionsSettingsSmartContext store,
-            IWindowsHookManager windowsHookManager, FormValidators formValidators, IUIApplication iuiApplication)
+            IPromptWinForm windowsHookManager, ICollectionEditItemViewModelFactory formValidators, Func<string, string> iuiApplication)
             : base(lifetime, store)
         {
             AddHeader("Tests");
@@ -32,12 +33,11 @@ namespace Sizikov.AsyncSuffix.Settings
                 "Exclude test methods from analysis");
             var editItemViewModelFactory = new DefaultCollectionEditItemViewModelFactory(null);
             var buttonProviderFactory = new DefaultButtonProviderFactory(lifetime, windowsHookManager, formValidators,
-                iuiApplication, editItemViewModelFactory);
+                iuiApplication, new DefaultButtonProviderCaptions());
             var customAsyncTypes = new StringCollectionEditViewModel(lifetime, "Treat these types as async:",
                 buttonProviderFactory, editItemViewModelFactory);
-            store.EnumEntryIndices(AsyncSuffixSettingsAccessor.CustomAsyncTypes)
-                .ToArray()
-                .ForEach(x => customAsyncTypes.AddItem(x));
+            foreach (var x in store.EnumEntryIndices(AsyncSuffixSettingsAccessor.CustomAsyncTypes))
+                customAsyncTypes.AddItem(x);
             customAsyncTypes.Items.CollectionChanged += (o, e) =>
             {
                 foreach (

@@ -6,6 +6,7 @@ namespace ClassLibrary2
     {
         Task Foo();
     }
+
     public abstract class Abstract
     {
         public abstract Task Do();

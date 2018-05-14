@@ -48,7 +48,8 @@ namespace Sizikov.AsyncSuffix.Analyzer
         public static bool IsTestMethod(this IDeclaredElement declaredElement)
         {
             var unitTestElement = declaredElement.GetSolution().GetComponent<IUnitTestElementStuff>();
-            return (declaredElement is IMethod || declaredElement is IProperty) && unitTestElement.IsElementOfKind(declaredElement, UnitTestElementKind.Test);
+            return (declaredElement is IMethod || declaredElement is IProperty) && UT.WithReadLock(() =>
+                       unitTestElement.IsElementOfKind(declaredElement, UnitTestElementKind.Test));
         }
     }
 }
