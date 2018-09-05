@@ -2,8 +2,6 @@
 using System.Linq;
 using JetBrains.Application.DataContext;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.Refactorings;
-using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
 using JetBrains.ReSharper.Psi.Naming.Impl;
 using JetBrains.ReSharper.Refactorings.Rename;
 
@@ -13,25 +11,24 @@ namespace Sizikov.AsyncSuffix.Workflows
     {
         private List<string> Suggestions { get; }
 
-        public MethodRenameWorkflow(List<string> suggestions, RenameRefactoringService renameRefactoringService, ISolution solution, string actionId)
-            : base(renameRefactoringService, solution, actionId)
+        public MethodRenameWorkflow(List<string> suggestions, ISolution solution, string actionId)
+            : base(solution, actionId)
         {
             Suggestions = suggestions;
         }
 
-
-        public override IRefactoringPage FirstPendingRefactoringPage
-        {
-            get
-            {
-                var renameOverloadsPageViewModel = base.FirstPendingRefactoringPage as RenameInitialControlViewModel;
-                if (renameOverloadsPageViewModel != null)
-                {
-                    return new RenameOverloadsPageDecorator(renameOverloadsPageViewModel, Suggestions);
-                }
-                return base.FirstPendingRefactoringPage;
-            }
-        }
+        //public override IRefactoringPage FirstPendingRefactoringPage
+        //{
+        //    get
+        //    {
+        //        var sequencePages = base.FirstPendingRefactoringPage as SequencePages;
+        //        if (sequencePages != null)
+        //        {
+        //            return new RenameOverloadsPageDecorator(sequencePages.FirstPage, Suggestions);
+        //        }
+        //        return base.FirstPendingRefactoringPage;
+        //    }
+        //}
 
         public override bool Initialize(IDataContext context)
         {

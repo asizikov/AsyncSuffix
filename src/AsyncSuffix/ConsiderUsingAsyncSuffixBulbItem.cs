@@ -5,7 +5,6 @@ using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.DataContext;
 using JetBrains.ReSharper.Feature.Services.Bulbs;
 using JetBrains.ReSharper.Feature.Services.Refactorings;
-using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.TextControl;
 using Sizikov.AsyncSuffix.Workflows;
@@ -35,7 +34,7 @@ namespace Sizikov.AsyncSuffix
                 var suggests = AsyncMethodNameSuggestions.Get(MethodDeclaration);
                 var workflow =
                     (IRefactoringWorkflow)
-                        new MethodRenameWorkflow(suggests, solution.GetComponent<RenameRefactoringService>(), solution, "AsyncSuffixMethodRename");
+                        new MethodRenameWorkflow(suggests, solution, "AsyncSuffixMethodRename");
                 Lifetimes.Using(lifetime =>
                 {
                     var dataRules = DataRules.AddRule("DoAsyncMethodRenameWorkflow", ProjectModelDataConstants.SOLUTION, solution);
