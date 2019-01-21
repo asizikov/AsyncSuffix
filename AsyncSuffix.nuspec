@@ -10,12 +10,12 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Task returning method's naming analyzer. Async methods should have 'Async' suffix.</description>
         <releaseNotes>
-            &#8226;ReSharper 2018.2 support;
+            &#8226;ReSharper 2018.3 support;
     </releaseNotes>
         <language>en-US</language>
         <tags>async method  naming  task</tags>
         <dependencies>
-            <dependency id="Wave" version="[182.0, 183.0)" />
+            <dependency id="Wave" version="[183.0, 184.0)" />
         </dependencies>
     </metadata>
     <files>
