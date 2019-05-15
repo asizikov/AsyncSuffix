@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using JetBrains.Annotations;
-using JetBrains.Application.Interop.NativeHook;
 using JetBrains.Application.Settings;
-using JetBrains.Application.UI.Components;
 using JetBrains.Application.UI.Controls.Dialogs;
 using JetBrains.Application.UI.Controls.StringCollectionEdit.Impl;
 using JetBrains.Application.UI.Controls.StringCollectionEdit.Impl.Buttons;
@@ -11,9 +9,8 @@ using JetBrains.Application.UI.Controls.StringCollectionEdit.Impl.Items;
 using JetBrains.Application.UI.Options;
 using JetBrains.Application.UI.Options.OptionPages;
 using JetBrains.Application.UI.Options.OptionsDialog;
-using JetBrains.DataFlow;
+using JetBrains.Lifetimes;
 using JetBrains.ReSharper.Feature.Services.Resources;
-using JetBrains.Util;
 
 namespace Sizikov.AsyncSuffix.Settings
 {

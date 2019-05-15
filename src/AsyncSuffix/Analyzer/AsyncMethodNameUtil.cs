@@ -45,8 +45,8 @@ namespace Sizikov.AsyncSuffix.Analyzer
                 var customAsyncTypeNames = settings.EnumEntryIndices(AsyncSuffixSettingsAccessor.CustomAsyncTypes)
                     .ToArray();
                 var customAsyncTypes = new List<IDeclaredType>();
-                customAsyncTypeNames
-                    .ForEach(type => customAsyncTypes.Add(TypeFactory.CreateTypeByCLRName(type, declaredElement.Module)));
+                foreach (var type in customAsyncTypeNames)
+                    customAsyncTypes.Add(TypeFactory.CreateTypeByCLRName(type, declaredElement.Module));
 
                 var returnTypeElement = returnType.GetTypeElement();
                 var isCustomAsyncType = returnTypeElement != null && customAsyncTypes.Any(type => returnTypeElement.IsDescendantOf(type.GetTypeElement()));

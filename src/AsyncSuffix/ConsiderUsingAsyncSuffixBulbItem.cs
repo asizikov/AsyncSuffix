@@ -1,6 +1,6 @@
 ﻿using JetBrains.Application.DataContext;
 using JetBrains.Application.UI.Actions.ActionManager;
-using JetBrains.DataFlow;
+using JetBrains.Lifetimes;
 using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.DataContext;
 using JetBrains.ReSharper.Feature.Services.Bulbs;
@@ -35,7 +35,7 @@ namespace Sizikov.AsyncSuffix
                 var workflow =
                     (IRefactoringWorkflow)
                         new MethodRenameWorkflow(suggests, solution, "AsyncSuffixMethodRename");
-                Lifetimes.Using(lifetime =>
+                Lifetime.Using(lifetime =>
                 {
                     var dataRules = DataRules.AddRule("DoAsyncMethodRenameWorkflow", ProjectModelDataConstants.SOLUTION, solution);
                     var dataContext = solution.GetComponent<IActionManager>().DataContexts.CreateOnSelection(lifetime, dataRules);
